@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#112c25">
+<link rel="canonical" href="https://getsaleledger.com/">
+<title>SaleLedger — A clearer month-end for auction trust accounts</title>
+<meta name="description" content="Local-first trust account reconciliation for auction houses. Reconcile monthly records, surface exceptions, and prepare a reproducible report. Your records, your review, your control.">
+<meta property="og:title" content="SaleLedger — A clearer month-end">
+<meta property="og:description" content="Local-first trust account reconciliation for auction houses. Your ledger, your bank statement, your control.">
+<meta property="og:url" content="https://getsaleledger.com/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB;
+    --panel: #FFFFFF;
+    --ink: #14201B;
+    --ink-soft: #3C463F;
+    --green: #112C25;
+    --green-mid: #1D4438;
+    --brass: #8A6530;
+    --brick: #7A2626;
+    --rule: rgba(17, 44, 37, 0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  a { color: var(--green-mid); }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .measure { max-width: 620px; }
+
+  /* ---------- Header ---------- */
+
+  header {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brandmark {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+  }
+
+  .brandmark .icon-mark {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    background: var(--green);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brandmark .icon-mark svg {
+    width: 16px;
+    height: 16px;
+    color: var(--bg);
+  }
+
+  .brandmark .text-stack {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .brandmark .name {
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--green);
+    letter-spacing: -0.01em;
+  }
+
+  .brandmark .by {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  nav { display: flex; align-items: center; gap: 30px; }
+
+  nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  nav a:hover { color: var(--green); }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green);
+    color: var(--bg);
+    text-decoration: none;
+    padding: 11px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 3px;
+    border: 1px solid var(--green);
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--green);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero { padding: 64px 0 0; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+    padding-bottom: 56px;
+  }
+
+  .example-panel-hero {
+    grid-template-columns: 1fr;
+    padding: 26px;
+  }
+
+  /* ---------- Quick nav bar ---------- */
+
+  .quicknav {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--panel);
+  }
+
+  .quicknav-inner {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 4px 32px;
+    scrollbar-width: none;
+  }
+
+  .quicknav-inner::-webkit-scrollbar { display: none; }
+
+  .quicknav-inner a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 14px 18px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .quicknav-inner a:hover {
+    color: var(--green);
+    border-bottom-color: var(--brass);
+  }
+
+  h1 {
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1.18;
+    margin: 0 0 22px;
+    color: var(--green);
+    letter-spacing: -0.01em;
+    max-width: 780px;
+  }
+
+  h1 em { font-style: italic; font-weight: 500; color: var(--green-mid); }
+
+  .lede {
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin: 0 0 34px;
+    max-width: 560px;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+
+  .qualifier {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- Numbered section label ---------- */
+
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--brass);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    font-size: 32px;
+    color: var(--green);
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .section-lede {
+    color: var(--ink-soft);
+    font-size: 17px;
+    margin: 0 0 44px;
+  }
+
+  section { padding: 68px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+
+  /* ---------- Worked example panel ---------- */
+
+  .example-panel {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .example-panel .col-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .ledger-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 14.5px;
+  }
+
+  .ledger-row:last-child { border-bottom: none; }
+  .ledger-row .value { font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+
+  .status-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--brick);
+    flex-shrink: 0;
+  }
+
+  .status-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brick);
+    letter-spacing: 0.03em;
+  }
+
+  .flag-callout {
+    background: rgba(122, 38, 38, 0.07);
+    border-left: 3px solid var(--brick);
+    padding: 14px 16px;
+    margin-top: 18px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .flag-callout strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--brick);
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- Workflow steps ---------- */
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    border-top: 1px solid var(--rule);
+    padding-top: 40px;
+  }
+
+  .step {
+    padding-right: 12px;
+  }
+
+  .step .icon {
+    width: 34px; height: 34px;
+    margin-bottom: 18px;
+    color: var(--green-mid);
+  }
+
+  .step-num-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--brass);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .step h3 {
+    font-family: 'Spectral', serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--green);
+  }
+
+  .step p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  /* ---------- Trust / local grid ---------- */
+
+  .trust-section {
+    background: var(--green);
+    color: var(--bg);
+  }
+
+  .trust-section .section-num { color: var(--brass); }
+  .trust-section h2 { color: var(--bg); }
+  .trust-section .section-lede { color: rgba(246, 243, 235, 0.72); }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .trust-grid .step-num-badge { color: var(--brass); }
+
+  .trust-grid h3 {
+    font-family: 'Spectral', serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--bg);
+  }
+
+  .trust-grid p {
+    margin: 0;
+    font-size: 15px;
+    color: rgba(246, 243, 235, 0.78);
+  }
+
+  /* ---------- Coverage / statutes ---------- */
+
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .coverage-item {
+    padding: 26px 30px 26px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .coverage-item:nth-child(odd) {
+    border-right: 1px solid var(--rule);
+    padding-right: 30px;
+  }
+
+  .coverage-item:nth-child(even) { padding-left: 30px; }
+
+  .coverage-item .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--brass);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .coverage-item h4 {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--green);
+  }
+
+  .coverage-item p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ---------- Pricing ---------- */
+
+  .pricing-panel {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .price-amount {
+    font-family: 'Spectral', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  .price-amount .unit {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  .pricing-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+  }
+
+  .pricing-panel li {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .pricing-panel li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--brass);
+  }
+
+  /* ---------- FAQ ---------- */
+
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0;
+  }
+
+  .faq-item summary {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--green);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary::after {
+    content: "+";
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    color: var(--brass);
+    transition: transform 0.15s ease;
+  }
+
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+
+  .faq-item p {
+    margin: 14px 0 0;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    max-width: 640px;
+  }
+
+  /* ---------- Final CTA ---------- */
+
+  .final-cta { padding: 84px 0 96px; }
+  .final-cta h2 { font-size: 34px; }
+  .final-cta .qualifier { margin-top: 20px; max-width: 480px; }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 36px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  footer .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .example-panel { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: 1fr; gap: 26px; }
+    .coverage-grid { grid-template-columns: 1fr; }
+    .coverage-item:nth-child(odd) { border-right: none; padding-right: 0; }
+    .coverage-item:nth-child(even) { padding-left: 0; }
+    nav { gap: 16px; }
+    nav a:not(.btn-primary) { display: none; }
+    .pricing-panel { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  a:focus-visible, .btn-primary:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="#" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <nav>
+      <a href="#workflow">How it works</a>
+      <a href="#coverage">Trust account coverage</a>
+      <a href="#questions">Questions</a>
+      <a href="#start" class="btn-primary">Start free trial</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">
+        <span>AVAILABLE NOW</span>
+        <span>MADE FOR MONTH-END</span>
+      </div>
+      <h1>Your ledger. Your bank statement. <em>A clearer month-end.</em></h1>
+      <p class="lede">Auction trust accounting has enough moving parts. SaleLedger brings your settlement records, your bank statement, and your reconciliation into one local workflow.</p>
+      <div class="cta-row">
+        <a href="#start" class="btn-primary">Start free trial ↗</a>
+        <a href="#workflow" class="btn-secondary">See how it works ↓</a>
+      </div>
+      <p class="qualifier">For auction houses and auctioneers. Built to keep consignor and bank data on your own computer.</p>
+    </div>
+
+    <div class="example-panel example-panel-hero">
+      <span class="col-label">Trust reconciliation — Auction 246</span>
+      <div class="status-line">
+        <span class="status-dot"></span>
+        <span class="status-text">OUT OF BALANCE</span>
+      </div>
+      <div class="ledger-row"><span>Bank adjusted balance</span><span class="value">$166,730.00</span></div>
+      <div class="ledger-row"><span>Trust control balance</span><span class="value">$160,565.00</span></div>
+      <div class="ledger-row"><span>Consignor subledger total</span><span class="value">$156,850.00</span></div>
+      <div class="flag-callout">
+        <strong>DISBURSEMENT MISMATCH</strong>
+        Consignor A: ledger recorded $27,200.00, bank cleared $27,700.00. Overpayment of $500.00 — flagged, not assumed.
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="quicknav">
+  <div class="wrap quicknav-inner">
+    <a href="#workflow">01 Workflow</a>
+    <a href="#trust">02 Local by design</a>
+    <a href="#coverage">03 Coverage</a>
+    <a href="#start">04 Pricing</a>
+    <a href="#questions">05 Questions</a>
+  </div>
+</nav>
+
+<section id="workflow" class="rule-top">
+  <div class="wrap">
+    <span class="section-num">01 / THE WORKFLOW</span>
+    <h2>From recurring records to a repeatable process.</h2>
+    <p class="section-lede measure">Set up your auction once. Bring in each month's records. Keep the evidence that explains the result.</p>
+
+    <div class="steps">
+      <div class="step">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M15 4v5h5"/><path d="M8 13h8M8 17h5"/></svg>
+        <span class="step-num-badge">01</span>
+        <h3>Bring your records together.</h3>
+        <p>Your Auction Flex settlement export, a QuickBooks/IIF file, and your bank statement — CSV, Excel, or OFX/QFX.</p>
+      </div>
+      <div class="step">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <span class="step-num-badge">02</span>
+        <h3>Find what needs attention.</h3>
+        <p>Bank balance, settlement records, and what's owed to consignors — checked three ways. Every gap gets an explicit exception.</p>
+      </div>
+      <div class="step">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <span class="step-num-badge">03</span>
+        <h3>Prepare with a paper trail.</h3>
+        <p>A report, a check register, and a history of every period reconciled — ready if your state board ever asks to look.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="trust-section">
+  <div class="wrap">
+    <span class="section-num">02 / LOCAL BY DESIGN</span>
+    <h2>Built around your control.</h2>
+    <p class="section-lede measure">Your reporting workflow runs on your own computer. No consignor uploads. No account required to start.</p>
+    <div class="trust-grid">
+      <div>
+        <span class="step-num-badge mono">01</span>
+        <h3>Local-first, by design.</h3>
+        <p>The reconciliation engine works with records on your machine. Bank balances, consignor names, and account numbers stay yours.</p>
+      </div>
+      <div>
+        <span class="step-num-badge mono">02</span>
+        <h3>Calculations you can reproduce.</h3>
+        <p>Exact decimal math, not estimates. The same evidence produces the same result, every time you run it.</p>
+      </div>
+      <div>
+        <span class="step-num-badge mono">03</span>
+        <h3>Flag &gt; guess, always.</h3>
+        <p>When a transaction can't be confidently matched, SaleLedger says so by name. It never assumes an explanation for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="coverage" class="rule-top">
+  <div class="wrap">
+    <span class="section-num">03 / TRUST ACCOUNT COVERAGE</span>
+    <h2>The rules are real. Here's what they say.</h2>
+    <p class="section-lede measure">Most states don't require a periodic filing — they reserve the right to examine your trust account whenever they choose. Being able to prove it's right isn't optional.</p>
+  </div>
+  <div class="wrap">
+    <div class="coverage-grid">
+      <div class="coverage-item">
+        <span class="tag">WISCONSIN — SPS 125.12</span>
+        <h4>Written monthly reconciliation</h4>
+        <p>"Shall reconcile the trust account in writing each month... shall maintain a check register... date, payee, number... and the amount."</p>
+      </div>
+      <div class="coverage-item">
+        <span class="tag">TEXAS — 16 TAC § 67.70(b)</span>
+        <h4>Two-year itemized records</h4>
+        <p>Gross proceeds, itemized expenses, a list of all purchasers, and the selling price of every item sold — retained a minimum of two years.</p>
+      </div>
+      <div class="coverage-item">
+        <span class="tag">OHIO — ORC 4707.024</span>
+        <h4>Detailed deposit and withdrawal records</h4>
+        <p>"The licensee shall keep detailed records that show deposits, withdrawals, and interest accrued" in the client trust account.</p>
+      </div>
+      <div class="coverage-item">
+        <span class="tag">ILLINOIS — 68 Ill. Admin. Code Pt. 1440</span>
+        <h4>A running-balance journal</h4>
+        <p>A journal is required showing escrow receipts and disbursements in chronological order, with a running balance after each entry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="start" class="rule-top">
+  <div class="wrap">
+    <span class="section-num">04 / PRICING &amp; TRIAL</span>
+    <h2>One plan. A clear price.</h2>
+    <p class="section-lede measure">A 30-day free trial gives you a real answer on a real month before you decide anything.</p>
+
+    <div class="pricing-panel">
+      <div>
+        <div class="price-amount">$0<span class="unit"> / first 30 days</span></div>
+        <p class="qualifier" style="margin-top:10px;">No card required to start.</p>
+        <ul>
+          <li>Full reconciliation engine, no feature limits</li>
+          <li>Runs on your own computer — nothing uploaded</li>
+          <li>Consignor Summary, Consignment Order, and item-level Auction Flex exports</li>
+          <li>CSV, Excel, and OFX/QFX bank statements</li>
+        </ul>
+      </div>
+      <div>
+        <a href="mailto:hello@getsaleledger.com?subject=Requesting%20SaleLedger%20trial" class="btn-primary">Start free trial ↗</a>
+        <p class="qualifier" style="margin-top:16px; max-width:220px;">We'll be in touch about continuing after your trial ends.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questions" class="rule-top">
+  <div class="wrap">
+    <span class="section-num">05 / A FEW ANSWERS</span>
+    <h2>Know what to expect.</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Does my reporting data leave my computer?</summary>
+        <p>No. SaleLedger processes your settlement records and bank statement locally. Nothing is uploaded to us as part of running a reconciliation.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does SaleLedger file anything with my state board?</summary>
+        <p>No. Most states don't require a periodic filing for auction trust accounts — they reserve the right to examine the account directly. SaleLedger prepares your records so you're ready if that happens; it doesn't submit anything on your behalf.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens when information doesn't match?</summary>
+        <p>It's flagged by name for your review — an unauthorized deduction, a disbursement mismatch, stale funds, and so on. SaleLedger never guesses an explanation or silently resolves a discrepancy for you.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Which Auction Flex exports does it support?</summary>
+        <p>Consignor Summary, Consignment Order-level, and item-level exports, combined with a QuickBooks/IIF file for transaction dates. If your export doesn't match cleanly, tell us — this is actively being built around real feedback.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need an account to start the trial?</summary>
+        <p>No. Download and run it — no signup, no card, for the first 30 days.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top final-cta">
+  <div class="wrap">
+    <span class="section-num">LET'S TALK ABOUT YOUR MONTH-END</span>
+    <h2>Better reconciliation starts with better records.</h2>
+    <a href="#start" class="btn-primary">Start free trial ↗</a>
+    <p class="qualifier">Questions about the product or your workflow? <a href="mailto:hello@getsaleledger.com">Get in touch</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="#" class="brandmark">
+      <span class="icon-mark" style="width:24px; height:24px; border-radius:4px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px; height:13px;"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name" style="font-size:15px;">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <span class="tagline">Local records. Clear reconciliation.</span>
+  </div>
+</footer>
+
+</body>
+</html>
