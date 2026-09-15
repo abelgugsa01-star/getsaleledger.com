@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — SaleLedger</title>
+<meta name="description" content="What SaleLedger collects at checkout, from the App, and in support — and what never leaves your computer.">
+<link rel="canonical" href="https://getsaleledger.com/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F; --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626; --rule: rgba(17, 44, 37, 0.18); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 40px; line-height: 1.1; font-weight: 600; margin: 0 0 14px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 24px; line-height: 1.2; font-weight: 600; margin: 40px 0 10px; text-wrap: balance; }
+  section:first-child h2 { margin-top: 0; }
+  p, li { max-width: 68ch; }
+  p { margin: 0 0 14px; }
+  .intro { padding: 56px 0 8px; }
+  .meta { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 28px; }
+  .layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; padding-bottom: 72px; }
+  .toc { position: sticky; top: 96px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; }
+  .toc strong { display: block; color: var(--brass); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+  .toc a { display: block; color: var(--ink-soft); text-decoration: none; padding: 5px 0; border-bottom: 1px dashed var(--rule); }
+  .toc a:hover { color: var(--green); }
+  .plain { border-left: 3px solid var(--brass); background: rgba(138, 101, 48, 0.08); padding: 12px 16px; margin: 0 0 18px; max-width: 68ch; font-size: 16px; }
+  .plain strong { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 4px; }
+  ul { padding-left: 22px; margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  footer .links { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; display: flex; gap: 18px; flex-wrap: wrap; }
+  footer .links a { color: var(--ink-soft); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) { h1 { font-size: 32px; } .layout { grid-template-columns: 1fr; gap: 20px; } .toc { position: static; } nav { gap: 16px; } nav a:not(.btn-primary) { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg></span>
+      <span class="text-stack"><span class="name">SaleLedger</span><span class="by">by ProfitPin</span></span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Privacy Policy</span>
+  <h1>Your data, and where it stays.</h1>
+  <p class="meta">Effective September 14, 2026 · ProfitPin · <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></p>
+</div>
+<div class="wrap layout">
+  <nav class="toc" aria-label="On this page"><strong>On this page</strong><a href="#summary">Summary</a><a href="#app">What the App does — and doesn't — send</a><a href="#checkout">Subscribing and payment</a><a href="#email">Emails we send</a><a href="#website">The website</a><a href="#support">Support</a><a href="#sharing">Who we share data with</a><a href="#retention">Retention and deletion</a><a href="#rights">Your rights</a><a href="#changes">Changes to this policy</a><a href="#contact">Contact</a></nav>
+  <div class="body">
+    <section id="summary">
+      <h2>Summary</h2>
+      <div class="plain"><strong>The short version</strong>Your ledger, bank statement, and consignor data never leave your computer. We receive your email and subscription status from Stripe, your license key from the App, and whatever you send us in support email. We don't sell data and we don't run ad trackers.</div>
+      <p>This policy explains what ProfitPin collects when you visit getsaleledger.com, subscribe to SaleLedger, run the App, or contact support, and what we do with it.</p>
+    </section>
+    <section id="app">
+      <h2>What the App does — and doesn't — send</h2>
+      <p>SaleLedger runs on your Windows computer and processes your files there. <strong>It does not upload your settlement exports, QuickBooks/IIF files, bank statements, consignor names, amounts, reports, or history to us or to anyone else.</strong> Those stay in the folders on your computer where the App saves them (<code>~/.saleledger/</code> and wherever you save reports).</p>
+      <p>The App makes one kind of network request: about every six hours, and when you activate, it sends your <strong>license key</strong> to <code>license.getsaleledger.com</code> and receives back whether your subscription is active. That request includes your computer's IP address, as every internet request does. Nothing about your reconciliation is included. The App contains no analytics, telemetry, or crash reporting.</p>
+    </section>
+    <section id="checkout">
+      <h2>Subscribing and payment</h2>
+      <p>Checkout and billing are handled by <a href="https://stripe.com/privacy">Stripe</a>. Stripe collects your name, email address, billing address, and card details directly; we never see your full card number. From Stripe we receive and keep: your email address, your Stripe customer and subscription identifiers, the subscription's status (trialing, active, past due, cancelled), billing dates, and your license key, which is stored on your Stripe subscription. We use this to run your subscription, answer support requests, and send the emails described below.</p>
+      <p>Our license service (hosted on Render in the United States) keeps ordinary server logs — request time, path, IP address, and license key — for a short period for security and troubleshooting.</p>
+    </section>
+    <section id="email">
+      <h2>Emails we send</h2>
+      <p>Transactional only: your receipt and invoices (from Stripe), a reminder before your free month ends, failed-payment notices, notices about changes to price or terms, and replies to your support requests. We don't send marketing newsletters. You can't opt out of transactional emails while subscribed, because they're how we tell you about charges.</p>
+    </section>
+    <section id="website">
+      <h2>The website</h2>
+      <p>getsaleledger.com is a static site hosted on GitHub Pages. GitHub keeps standard access logs (IP address, browser, pages requested) under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. Fonts load from Google Fonts, which receives your IP address to serve them. We don't set analytics cookies or use advertising trackers. The welcome page after checkout requests your license key from our license service using the Stripe session reference in its address.</p>
+    </section>
+    <section id="support">
+      <h2>Support</h2>
+      <p>If you email <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a>, we keep the conversation so we can help you and follow up. Please don't send bank statements, consignor lists, or license keys in support email unless we ask — describe the problem, or send a screenshot with amounts and names blurred. Our mailbox is hosted by Microsoft 365.</p>
+    </section>
+    <section id="sharing">
+      <h2>Who we share data with</h2>
+      <p>Only service providers that make the product work, each limited to its role: Stripe (payments and subscription records), Render (hosting the license service), GitHub (hosting the website and downloads), Microsoft (support email). We don't sell personal information and don't share it for advertising. We'll disclose information if the law requires it or to protect our rights, and we'll tell you when we can.</p>
+    </section>
+    <section id="retention">
+      <h2>Retention and deletion</h2>
+      <p>Subscription records stay with your Stripe customer record for as long as you're a customer and afterwards as long as tax and accounting rules require (generally seven years for payment records). Server logs are kept for weeks, not years. Support email is kept while relevant.</p>
+      <p>To delete your account data, cancel your subscription and email <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a> from your subscription address; we'll delete what we're not legally required to keep and confirm. Data on your own computer is yours to delete — uninstalling the App does not remove <code>~/.saleledger/</code>.</p>
+    </section>
+    <section id="rights">
+      <h2>Your rights</h2>
+      <p>You can ask us what personal information we hold about you, ask us to correct or delete it, and ask for a copy. Email <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a>. Residents of California and other states with privacy laws have additional rights under those laws; we honor them for everyone. We don't discriminate against you for exercising them.</p>
+      <p>SaleLedger is a business product and isn't directed at children under 16; we don't knowingly collect their information.</p>
+    </section>
+    <section id="changes">
+      <h2>Changes to this policy</h2>
+      <p>We'll post updates here and, for material changes, email the address on your subscription. The effective date at the top tells you which version you're reading.</p>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>ProfitPin · <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></p>
+    </section>
+  </div>
+</div>
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg></span>
+      <span class="text-stack"><span class="name">SaleLedger</span><span class="by">by ProfitPin</span></span>
+    </a>
+    <div class="links"><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refunds.html">Refunds &amp; cancellation</a><a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></div>
+  </div>
+</footer>
+</body>
+</html>

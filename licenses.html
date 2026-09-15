@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Third-party notices — SaleLedger</title>
+<meta name="description" content="Open-source components and typefaces used in SaleLedger and their licenses.">
+<link rel="canonical" href="https://getsaleledger.com/licenses.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F; --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626; --rule: rgba(17, 44, 37, 0.18); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 40px; line-height: 1.1; font-weight: 600; margin: 0 0 14px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 24px; line-height: 1.2; font-weight: 600; margin: 40px 0 10px; text-wrap: balance; }
+  section:first-child h2 { margin-top: 0; }
+  p, li { max-width: 68ch; }
+  p { margin: 0 0 14px; }
+  .intro { padding: 56px 0 8px; }
+  .meta { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); margin-bottom: 28px; }
+  .layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; padding-bottom: 72px; }
+  .toc { position: sticky; top: 96px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; }
+  .toc strong { display: block; color: var(--brass); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+  .toc a { display: block; color: var(--ink-soft); text-decoration: none; padding: 5px 0; border-bottom: 1px dashed var(--rule); }
+  .toc a:hover { color: var(--green); }
+  .plain { border-left: 3px solid var(--brass); background: rgba(138, 101, 48, 0.08); padding: 12px 16px; margin: 0 0 18px; max-width: 68ch; font-size: 16px; }
+  .plain strong { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 4px; }
+  ul { padding-left: 22px; margin: 0 0 14px; }
+  li { margin-bottom: 6px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  footer .links { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; display: flex; gap: 18px; flex-wrap: wrap; }
+  footer .links a { color: var(--ink-soft); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) { h1 { font-size: 32px; } .layout { grid-template-columns: 1fr; gap: 20px; } .toc { position: static; } nav { gap: 16px; } nav a:not(.btn-primary) { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg></span>
+      <span class="text-stack"><span class="name">SaleLedger</span><span class="by">by ProfitPin</span></span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Third-party notices</span>
+  <h1>Open-source components in SaleLedger.</h1>
+  <p class="meta">Effective September 14, 2026 · ProfitPin · <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></p>
+</div>
+<div class="wrap layout">
+  <nav class="toc" aria-label="On this page"><strong>On this page</strong><a href="#about">About these notices</a><a href="#components">Components</a><a href="#contact">Questions</a></nav>
+  <div class="body">
+    <section id="about">
+      <h2>About these notices</h2>
+      <p>SaleLedger is built with open-source components. Each is used under its own license, listed below with a link to the full text. These licenses apply to those components only; SaleLedger itself is licensed to you under the <a href="/terms.html">Terms of Service</a>. Copies of the applicable license texts are also included with the Windows application.</p>
+      <p>Auction Flex, HiBid, and QuickBooks are trademarks of their respective owners. SaleLedger reads files those products export; it is not affiliated with, endorsed by, or supported by them.</p>
+    </section>
+    <section id="components">
+      <h2>Components</h2>
+      <div style="overflow-x:auto"><table style="border-collapse:collapse; width:100%; font-size:15px;">
+        <thead><tr><th style="text-align:left; padding:8px 10px; border-bottom:1px solid var(--rule); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:500;">Component</th><th style="text-align:left; padding:8px 10px; border-bottom:1px solid var(--rule); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:500;">Version</th><th style="text-align:left; padding:8px 10px; border-bottom:1px solid var(--rule); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); font-weight:500;">License</th><th style="border-bottom:1px solid var(--rule);"></th></tr></thead>
+        <tbody>
+        <tr><td>Python</td><td class="mono">3.14</td><td>Python Software Foundation License</td><td><a href="https://docs.python.org/3/license.html">License text</a></td></tr>
+        <tr><td>Flask</td><td class="mono">3.1</td><td>BSD-3-Clause</td><td><a href="https://github.com/pallets/flask/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>Werkzeug</td><td class="mono">3.1</td><td>BSD-3-Clause</td><td><a href="https://github.com/pallets/werkzeug/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>Jinja2</td><td class="mono">3.1</td><td>BSD-3-Clause</td><td><a href="https://github.com/pallets/jinja/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>MarkupSafe</td><td class="mono">3.0</td><td>BSD-3-Clause</td><td><a href="https://github.com/pallets/markupsafe/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>itsdangerous</td><td class="mono">2.2</td><td>BSD-3-Clause</td><td><a href="https://github.com/pallets/itsdangerous/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>click</td><td class="mono">8.5</td><td>BSD-3-Clause</td><td><a href="https://github.com/pallets/click/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>blinker</td><td class="mono">1.9</td><td>MIT</td><td><a href="https://github.com/pallets-eco/blinker/blob/main/LICENSE.txt">License text</a></td></tr>
+        <tr><td>openpyxl</td><td class="mono">3.1</td><td>MIT</td><td><a href="https://foss.heptapod.net/openpyxl/openpyxl/-/blob/branch/3.1/LICENCE.rst">License text</a></td></tr>
+        <tr><td>et_xmlfile</td><td class="mono">2.0</td><td>MIT</td><td><a href="https://foss.heptapod.net/openpyxl/et_xmlfile/-/blob/branch/default/LICENCE.rst">License text</a></td></tr>
+        <tr><td>PyInstaller (bundler)</td><td class="mono">6.22</td><td>GPL-2.0-or-later with the PyInstaller bootloader exception, which permits distributing bundled applications under their own license</td><td><a href="https://github.com/pyinstaller/pyinstaller/blob/develop/COPYING.txt">License text</a></td></tr>
+        <tr><td>stripe-python (license service only)</td><td class="mono">12.5</td><td>MIT</td><td><a href="https://github.com/stripe/stripe-python/blob/master/LICENSE">License text</a></td></tr>
+        <tr><td>gunicorn (license service only)</td><td class="mono">23</td><td>MIT</td><td><a href="https://github.com/benoitc/gunicorn/blob/master/LICENSE">License text</a></td></tr>
+        <tr><td>Spectral typeface (website)</td><td class="mono">—</td><td>SIL Open Font License 1.1</td><td><a href="https://fonts.google.com/specimen/Spectral/license">License text</a></td></tr>
+        <tr><td>IBM Plex Mono typeface (website)</td><td class="mono">—</td><td>SIL Open Font License 1.1</td><td><a href="https://fonts.google.com/specimen/IBM+Plex+Mono/license">License text</a></td></tr>
+        </tbody></table></div>
+      <style>td { padding: 9px 10px; border-bottom: 1px dashed var(--rule); vertical-align: top; } td.mono { font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; }</style>
+    </section>
+    <section id="contact">
+      <h2>Questions</h2>
+      <p><a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></p>
+    </section>
+  </div>
+</div>
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg></span>
+      <span class="text-stack"><span class="name">SaleLedger</span><span class="by">by ProfitPin</span></span>
+    </a>
+    <div class="links"><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refunds.html">Refunds &amp; cancellation</a><a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></div>
+  </div>
+</footer>
+</body>
+</html>
