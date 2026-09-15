@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your first reconciliation — SaleLedger</title>
+<meta name="description" content="A narrated walkthrough of SaleLedger using fictional practice files: sign up, activate, bring in three files, run the reconciliation, and read the report.">
+<link rel="canonical" href="https://getsaleledger.com/tutorial.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F;
+    --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07); --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .measure { max-width: 640px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--green); text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 600; margin: 0 0 18px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 28px; line-height: 1.2; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-soft); }
+  .intro { padding: 60px 0 36px; }
+  section { padding: 44px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+  .video-frame { background: var(--green); border-radius: 6px; padding: 6px; box-shadow: 0 12px 40px rgba(17, 44, 37, 0.18); }
+  video { display: block; width: 100%; height: auto; border-radius: 3px; background: #000; }
+  .video-meta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  .practice { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: start; }
+  .practice-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 26px; }
+  .practice-card dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 14px 0 0; font-size: 15.5px; }
+  .practice-card dt { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); padding-top: 3px; }
+  .practice-card dd { margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  .files { list-style: none; padding: 0; margin: 12px 0 0; }
+  .files li { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--rule); font-size: 15.5px; }
+  .files li:last-child { border-bottom: none; }
+  .files code { font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--green); }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  .step:last-child { border-bottom: none; }
+  .step .n { counter-increment: step; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--brass); padding-top: 6px; }
+  .step .n::before { content: counter(step, decimal-leading-zero); }
+  .step p { max-width: 640px; }
+  .step .note { border-left: 3px solid var(--brass); padding: 10px 14px; background: rgba(138, 101, 48, 0.08); font-size: 15px; margin-top: 10px; max-width: 640px; }
+  .step .caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .step img { display: block; width: 100%; max-width: 640px; border: 1px solid var(--rule); border-radius: 4px; margin: 14px 0 6px; }
+  .step figcaption { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 640px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 16px; }
+  .checklist li::before { content: ""; flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; border: 1.5px solid var(--green); border-radius: 3px; }
+  .final-cta { text-align: left; padding: 56px 0 64px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  footer .tagline { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .practice { grid-template-columns: 1fr; }
+    .files li { grid-template-columns: 1fr; gap: 2px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; }
+    nav { gap: 16px; }
+    nav a:not(.btn-primary) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Practice guide</span>
+  <h1>Your first reconciliation.</h1>
+  <p class="lede measure">Learn the monthly routine with fictional records before you touch your own. You'll need the SaleLedger Windows app and a license key. Keep the practice files separate from your business records.</p>
+</div>
+
+<section class="rule-top" id="video">
+  <div class="wrap">
+    <h2>Watch the walkthrough</h2>
+    <p class="measure">A narrated tour of the app in nine steps, with the control to click highlighted on every screen and English captions. About three minutes. Pause to follow along with the practice files.</p>
+    <div class="video-frame">
+      <video controls playsinline preload="metadata" poster="tutorial-media/poster.jpg" aria-label="SaleLedger first-reconciliation video tutorial">
+        <source src="tutorial-media/SaleLedger-first-reconciliation.mp4" type="video/mp4">
+        <track kind="captions" src="tutorial-media/captions.vtt" srclang="en" label="English" default>
+        Your browser doesn't support embedded video. <a href="tutorial-media/SaleLedger-first-reconciliation.mp4">Download the video</a>.
+      </video>
+    </div>
+    <div class="video-meta">
+      <span>3 min 09 s</span><span>1280 × 800</span><span>Captions included</span>
+      <a href="tutorial-media/SaleLedger-first-reconciliation.mp4" download>Download the video</a>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top" id="practice">
+  <div class="wrap practice">
+    <div>
+      <h2>Start with the practice files</h2>
+      <p>One fictional auction month for a fictional auction house. The files are shaped exactly like real Auction Flex, QuickBooks, and bank exports, so what you learn here carries over directly.</p>
+      <ul class="files">
+        <li><code>co_summary_report.csv</code><span>Auction Flex settlement export — Consignment Order totals</span></li>
+        <li><code>sample_export.iif</code><span>QuickBooks / IIF export from Pay Consignors</span></li>
+        <li><code>bank_statement.csv</code><span>Trust account bank statement, August 2026</span></li>
+        <li><code>README.txt</code><span>The values to type in, and what to expect</span></li>
+      </ul>
+      <p style="margin-top:18px;"><a class="btn-primary" href="SaleLedger-Practice.zip" download>Download the practice files (ZIP) ↓</a></p>
+    </div>
+    <div class="practice-card">
+      <span class="section-num">Values for Option A</span>
+      <dl>
+        <dt>Auction ID</dt><dd>246</dd>
+        <dt>Opening balance</dt><dd>150000.00</dd>
+        <dt>As-of date</dt><dd>2026-08-31</dd>
+        <dt>Expected result</dt><dd>OUT OF BALANCE · 8 exceptions</dd>
+      </dl>
+      <p style="margin-top:16px; font-size:15px; color:var(--ink-soft);">The practice month is out of balance on purpose. It contains one of each kind of problem SaleLedger catches, so you can see how each is reported.</p>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top" id="steps">
+  <div class="wrap">
+    <h2>Step by step</h2>
+    <ol class="steps">
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Start your free month and save your key</h3>
+          <p>On <a href="/">getsaleledger.com</a>, click <strong>Start free month</strong>. Stripe handles checkout; a card is required, but nothing is charged for 30 days, and you can cancel before then from your billing page. The page after checkout shows your license key, <code>SL-XXXX-XXXX-XXXX-XXXX</code>, and the download link. Copy the key somewhere safe — it's also kept with your subscription, so you can return to that page any time.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Open SaleLedger and activate</h3>
+          <p>Double-click <code>SaleLedger.exe</code>. It opens in your web browser at <code>127.0.0.1:5151</code> — a page served by your own computer, not by us. Paste your key and click <strong>Activate</strong>.</p>
+          <div class="note caution">Windows may show a "Windows protected your PC" notice the first time because the app isn't code-signed yet. Choose <em>More info → Run anyway</em>.</div>
+          <div class="note">The key is the only thing SaleLedger ever sends anywhere, about every six hours, to confirm your subscription. Your ledger, bank statement, and consignor data never leave this computer.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Gather three files for the month</h3>
+          <p><strong>Settlement export from Auction Flex.</strong> Consignor Summary (Reports #21/#23), Totals by Consignment Order (#24/#25), or Totals by Item (#26/#27) — whichever you already run. Save it as CSV.</p>
+          <p><strong>QuickBooks / IIF export.</strong> In Auction Flex, <em>Pay Consignors → Export to QuickBooks</em> for the same auction.</p>
+          <p><strong>Trust account bank statement.</strong> Download from your bank as CSV, Excel, or the Quicken / QuickBooks "Web Connect" file (OFX/QFX).</p>
+          <div class="note">For the practice run, these are the three files in the ZIP.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Fill in Option A and run</h3>
+          <p>Under <strong>Option A — Auction Flex + QuickBooks</strong>, choose the three files. Enter the auction number, the trust account's opening balance on the first day of the period, and the as-of date. For the practice set: <code>246</code>, <code>150000.00</code>, <code>2026-08-31</code>. Click <strong>Run reconciliation</strong>.</p>
+          <div class="note">SaleLedger matches consignors between the settlement export and the IIF file <em>by name</em>. If a name is spelled differently in the two files, that consignor's payout is left out and the report names it — it never guesses.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Read the result</h3>
+          <p>The report opens with one status — <strong>IN BALANCE</strong> or <strong>OUT OF BALANCE</strong> — and the three figures that have to agree: the bank's adjusted balance, the trust control balance from your records, and the consignor subledger total. In the practice month they're $166,730.00, $150,475.00, and $150,000.00, so the month is out of balance and the report says so.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Work through the exceptions</h3>
+          <p>Every gap becomes a numbered exception in plain English. Practice with these:</p>
+          <p><strong>Disbursement mismatch</strong> — Consignor A's check cleared for $27,700.00 but the ledger recorded $27,200.00: a $500 overpayment to chase.<br>
+          <strong>Unmatched receipt</strong> — a $20,000.00 deposit with no auction or consignor behind it: find the source before it sits in trust.<br>
+          <strong>Unmatched disbursement</strong> — a $2,950.00 wire to the operating account with no authorization: the classic commingling finding.<br>
+          <strong>Bank fee</strong> — a $95.00 monthly service fee the bank took from trust: record it, or move it to operating.</p>
+          <div class="note">SaleLedger identifies the problem; you decide the fix. It never assumes an explanation.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Keep the report and the check register</h3>
+          <p>The report ends with a check register — date, payee, check number, amount — which is what Wisconsin SPS 125.12(1) and similar state bookkeeping rules ask for. Save the page (or print to PDF) with your monthly records. Every run is also added to a local history, so you can show a state examiner each month you reconciled.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="n"></span>
+        <div>
+          <h3>Next month</h3>
+          <p>SaleLedger pre-fills the opening balance from last period's actual bank ending balance, so you don't retype it. Bring in three new files, click Run, read the result. If you're checking a full month with several auctions, include settlement data for every auction that had activity — otherwise their deposits and checks show up as unexplained.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="rule-top" id="checklist">
+  <div class="wrap">
+    <h2>Your practice checklist</h2>
+    <ul class="checklist">
+      <li>Started the free month and saved the license key.</li>
+      <li>Downloaded SaleLedger, got past the Windows notice, and activated.</li>
+      <li>Unzipped the practice files somewhere separate from business records.</li>
+      <li>Ran Option A with 246 / 150000.00 / 2026-08-31 and saw <strong>OUT OF BALANCE</strong> with 8 exceptions.</li>
+      <li>Found the $500 overpayment and the $2,950 operating-account transfer in the list.</li>
+      <li>Saved the report and located the check register at the bottom.</li>
+      <li>Reloaded the app and saw the opening balance carried forward ($166,730.00).</li>
+    </ul>
+  </div>
+</section>
+
+<section class="rule-top final-cta">
+  <div class="wrap">
+    <span class="section-num">Ready for your own month-end</span>
+    <h2>Same routine. Your records.</h2>
+    <p class="measure">Delete the practice history when you're done (it's in <code>~/.saleledger/history.json</code>) so it doesn't sit next to real months. Then run your first real reconciliation.</p>
+    <div class="cta-row">
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month ↗</a>
+      <a href="/" class="btn-secondary">Back to getsaleledger.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <span class="tagline">Practice files are fictional. Questions: <a href="mailto:hello@getsaleledger.com">hello@getsaleledger.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

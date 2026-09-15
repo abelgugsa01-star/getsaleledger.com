@@ -1,0 +1,100 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.817
+Welcome to SaleLedger. This short tour uses fictional practice files, so nothing here is a
+
+00:00:06.817 --> 00:00:13.255
+real auction house. To begin, go to getsaleledger.com and click Start free month.
+
+00:00:13.255 --> 00:00:20.072
+Checkout is handled by Stripe. A card is required, but nothing is charged for thirty days,
+
+00:00:20.072 --> 00:00:22.420
+and you can cancel before then.
+
+00:00:23.520 --> 00:00:30.252
+After checkout, you land on this page. It shows your license key. Copy it somewhere safe.
+
+00:00:30.252 --> 00:00:36.984
+We also keep it with your subscription, so you can come back to this page any time to see
+
+00:00:36.984 --> 00:00:41.900
+it again. The download button for the Windows app is right below.
+
+00:00:43.000 --> 00:00:49.888
+Double-click SaleLedger.exe. It opens in your web browser, on your own computer. Paste
+
+00:00:49.888 --> 00:00:56.547
+your key and click Activate. That key is the only thing SaleLedger ever sends anywhere.
+
+00:00:56.547 --> 00:01:02.900
+Your ledger, your bank statement, and your consignor data never leave this machine.
+
+00:01:04.000 --> 00:01:10.702
+Each month you need three files. One: a settlement export from Auction Flex. The plain
+
+00:01:10.702 --> 00:01:17.639
+Consignor Summary, Consignment Order totals, or item-level totals all work; use whichever
+
+00:01:17.639 --> 00:01:24.575
+report you already run. Two: the QuickBooks IIF file that Auction Flex's Pay Consignors
+
+00:01:24.575 --> 00:01:31.355
+tool exports. Three: your trust account bank statement, as CSV, Excel, or your bank's
+
+00:01:31.355 --> 00:01:32.680
+Quicken download.
+
+00:01:33.780 --> 00:01:40.186
+Under Option A, choose the three files. Then enter the auction number, the trust account's
+
+00:01:40.186 --> 00:01:46.449
+opening balance on the first day of the period, and the as-of date. In the practice set,
+
+00:01:46.449 --> 00:01:52.641
+that's auction 246, an opening balance of one hundred fifty thousand dollars,
+
+00:01:52.641 --> 00:01:56.200
+and August thirty-first. Click Run reconciliation.
+
+00:01:57.300 --> 00:02:03.193
+The result is one line: In balance, or Out of balance. Below it, the three numbers that
+
+00:02:03.193 --> 00:02:09.154
+have to agree: the bank's adjusted balance, the trust control balance from your records,
+
+00:02:09.154 --> 00:02:15.116
+and the total owed to consignors. In the practice month they don't agree, and the report
+
+00:02:15.116 --> 00:02:17.080
+says so instead of hiding it.
+
+00:02:18.180 --> 00:02:24.458
+Every gap becomes a numbered exception in plain English. Here, a consignor check cleared
+
+00:02:24.458 --> 00:02:30.665
+for five hundred dollars more than the ledger recorded. Further down, a deposit with no
+
+00:02:30.665 --> 00:02:36.372
+matching auction, and a transfer to the operating account with no authorization.
+
+00:02:36.372 --> 00:02:41.580
+SaleLedger never guesses at an explanation. It tells you what to look at.
+
+00:02:42.680 --> 00:02:48.623
+The report ends with a check register: date, payee, check number, and amount. That is
+
+00:02:48.623 --> 00:02:54.776
+exactly what state bookkeeping rules like Wisconsin's ask for. Keep the report with your
+
+00:02:54.776 --> 00:02:59.600
+monthly records, and you're audit-ready without doing anything extra.
+
+00:03:00.700 --> 00:03:07.575
+Next month, SaleLedger pre-fills the opening balance from the bank's actual ending balance
+
+00:03:07.575 --> 00:03:14.145
+last period, so you never retype it. Bring in three new files, click Run, and read the
+
+00:03:14.145 --> 00:03:18.270
+result. That's the whole routine. Thanks for watching.
