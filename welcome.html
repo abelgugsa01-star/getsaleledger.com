@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your SaleLedger license — SaleLedger</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F;
+    --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07); --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.6; padding: 0 20px 60px; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  header { padding: 22px 0 18px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; display: block; line-height: 1.15; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass); }
+  h1 { font-size: 32px; line-height: 1.15; font-weight: 600; margin: 8px 0 12px; text-wrap: balance; }
+  p { margin: 0 0 14px; }
+  .key-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 22px 24px; margin: 24px 0; }
+  .key-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .key { font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; letter-spacing: 0.06em; color: var(--green); margin: 6px 0 12px; word-break: break-all; user-select: all; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg); text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); cursor: pointer; }
+  .btn-quiet { display: inline-flex; align-items: center; background: none; color: var(--ink-soft); text-decoration: none; padding: 10px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; border-radius: 3px; border: 1px solid var(--rule); cursor: pointer; }
+  ol { padding-left: 22px; }
+  ol li { margin-bottom: 10px; }
+  .muted { color: var(--ink-soft); font-size: 15px; }
+  .error { background: var(--brick-bg); color: var(--brick); padding: 12px 16px; border-radius: 4px; }
+  .hidden { display: none; }
+  a { color: var(--green); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="/" class="brandmark">
+    <span class="icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg></span>
+    <span><span class="name">SaleLedger</span><span class="by">by ProfitPin</span></span>
+  </a>
+</header>
+
+<div id="loading">
+  <span class="eyebrow">One moment</span>
+  <h1>Confirming your subscription…</h1>
+  <p class="muted">Fetching your license key from Stripe.</p>
+</div>
+
+<div id="ready" class="hidden">
+  <span class="eyebrow">You're set</span>
+  <h1>Your free month starts now.</h1>
+  <p>Save this key — the app asks for it the first time you open it. We've also kept it on file with your subscription, so you can always come back to this page to see it again.</p>
+
+  <div class="key-card">
+    <span class="key-label">Your license key</span>
+    <div class="key" id="key">SL-····-····-····-····</div>
+    <div class="row">
+      <button class="btn-quiet" id="copy" type="button">Copy key</button>
+      <span class="muted" id="copied" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <ol>
+    <li><a class="btn-primary" href="https://github.com/abelgugsa01-star/getsaleledger.com/releases/latest/download/SaleLedger.exe">Download SaleLedger for Windows ↓</a></li>
+    <li>Double-click <code>SaleLedger.exe</code>. Windows may show a "protected your PC" notice the first time because the app isn't code-signed yet — choose <em>More info → Run anyway</em>. It opens in your browser.</li>
+    <li>Paste your key and click <strong>Activate</strong>.</li>
+  </ol>
+
+  <p class="muted" id="billing"></p>
+  <p class="muted">Need to update your card or cancel? <a id="portal" href="#">Manage your subscription ↗</a>. Questions: <a href="mailto:hello@getsaleledger.com">hello@getsaleledger.com</a>.</p>
+</div>
+
+<div id="lookup" class="hidden">
+  <span class="eyebrow">Find your key</span>
+  <h1>Looking for your license key?</h1>
+  <p>Open the receipt email Stripe sent when you signed up and click the link back to this page — it includes the reference we need. Or write to <a href="mailto:hello@getsaleledger.com?subject=My%20SaleLedger%20license%20key">hello@getsaleledger.com</a> from the address you signed up with and we'll send it.</p>
+  <p class="muted"><a href="/">← Back to getsaleledger.com</a></p>
+</div>
+
+<div id="failed" class="hidden">
+  <span class="eyebrow">Something's off</span>
+  <h1>We couldn't fetch your key.</h1>
+  <p class="error" id="failed-msg"></p>
+  <p>Your payment details are safe with Stripe either way. Reload this page in a minute, or email <a href="mailto:hello@getsaleledger.com?subject=SaleLedger%20license%20key">hello@getsaleledger.com</a> and we'll sort it out.</p>
+</div>
+</div>
+
+<script>
+(function () {
+  var SERVICE = "https://license.getsaleledger.com";
+  var params = new URLSearchParams(location.search);
+  var sessionId = params.get("session_id");
+  function show(id) {
+    ["loading", "ready", "lookup", "failed"].forEach(function (x) {
+      document.getElementById(x).classList.toggle("hidden", x !== id);
+    });
+  }
+  if (!sessionId) { show("lookup"); return; }
+
+  fetch(SERVICE + "/license?session_id=" + encodeURIComponent(sessionId))
+    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+    .then(function (res) {
+      if (!res.ok || !res.body.license_key) {
+        throw new Error(res.body && res.body.error ? res.body.error : "unexpected response");
+      }
+      var key = res.body.license_key;
+      document.getElementById("key").textContent = key;
+      document.getElementById("portal").href = SERVICE + "/portal?key=" + encodeURIComponent(key);
+      if (res.body.trial_end) {
+        var end = new Date(res.body.trial_end * 1000);
+        document.getElementById("billing").textContent =
+          "Your first charge of $89.99 is on " + end.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }) +
+          ". Cancel before then and you won't be charged.";
+      }
+      document.getElementById("copy").addEventListener("click", function () {
+        navigator.clipboard.writeText(key).then(function () {
+          document.getElementById("copied").textContent = "Copied.";
+        }, function () {
+          document.getElementById("copied").textContent = "Select the key and copy it.";
+        });
+      });
+      show("ready");
+    })
+    .catch(function (e) {
+      document.getElementById("failed-msg").textContent = String(e.message || e);
+      show("failed");
+    });
+})();
+</script>
+</body>
+</html>
