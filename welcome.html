@@ -79,7 +79,7 @@
 
   <p class="muted" id="billing"></p>
   <p class="muted">Need to update your card or cancel? <a id="portal" href="#">Manage your subscription ↗</a>. Questions: <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a>.</p>
-  <p class="muted">Your subscription is governed by the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, and <a href="refunds.html">Refund &amp; cancellation policy</a>. After the free month it renews at $89.99/month until you cancel.</p>
+  <p class="muted">Your subscription is governed by the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, and <a href="refunds.html">Refund &amp; cancellation policy</a>. After the free month it renews at $129.00/month until you cancel.</p>
 </div>
 
 <div id="lookup" class="hidden">
@@ -121,7 +121,7 @@
       if (res.body.trial_end) {
         var end = new Date(res.body.trial_end * 1000);
         document.getElementById("billing").textContent =
-          "Your first charge of $89.99 is on " + end.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }) +
+          "Your first charge of $129.00 is on " + end.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }) +
           ". Cancel before then and you won't be charged.";
       }
       document.getElementById("copy").addEventListener("click", function () {
