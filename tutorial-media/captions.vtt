@@ -1,100 +1,124 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.817
+00:00:00.000 --> 00:00:06.910
 Welcome to SaleLedger. This short tour uses fictional practice files, so nothing here is a
 
-00:00:06.817 --> 00:00:13.255
-real auction house. To begin, go to getsaleledger.com and click Start free month.
+00:00:06.910 --> 00:00:13.821
+real auction house. To begin, go to getsaleledger.com and click Start free month. Checkout
 
-00:00:13.255 --> 00:00:20.072
-Checkout is handled by Stripe. A card is required, but nothing is charged for thirty days,
+00:00:13.821 --> 00:00:20.654
+is handled by Stripe. A card is required, but nothing is charged for thirty days, and you
 
-00:00:20.072 --> 00:00:22.420
-and you can cancel before then.
+00:00:20.654 --> 00:00:22.420
+can cancel before then.
 
-00:00:23.520 --> 00:00:30.252
+00:00:23.520 --> 00:00:30.303
 After checkout, you land on this page. It shows your license key. Copy it somewhere safe.
 
-00:00:30.252 --> 00:00:36.984
+00:00:30.303 --> 00:00:37.086
 We also keep it with your subscription, so you can come back to this page any time to see
 
-00:00:36.984 --> 00:00:41.900
-it again. The download button for the Windows app is right below.
+00:00:37.086 --> 00:00:43.793
+it again. The download button for the Windows installer is right below. Run it once, and
 
-00:00:43.000 --> 00:00:49.888
-Double-click SaleLedger.exe. It opens in your web browser, on your own computer. Paste
+00:00:43.793 --> 00:00:46.460
+SaleLedger appears on your desktop.
 
-00:00:49.888 --> 00:00:56.547
-your key and click Activate. That key is the only thing SaleLedger ever sends anywhere.
+00:00:47.560 --> 00:00:53.966
+Double-click the SaleLedger icon on your desktop. It opens in your web browser, on your
 
-00:00:56.547 --> 00:01:02.900
-Your ledger, your bank statement, and your consignor data never leave this machine.
+00:00:53.966 --> 00:01:00.593
+own computer. The first time, it asks you to read a short agreement: what SaleLedger does,
 
-00:01:04.000 --> 00:01:10.702
+00:01:00.593 --> 00:01:07.146
+what stays your responsibility, and that your records never leave this computer. Tick the
+
+00:01:07.146 --> 00:01:10.460
+box and click I agree. You only do this once.
+
+00:01:11.560 --> 00:01:17.927
+Now paste your key and click Activate. That key is the only thing SaleLedger ever sends
+
+00:01:17.927 --> 00:01:24.075
+anywhere. Your ledger, your bank statement, and your consignor data never leave this
+
+00:01:24.075 --> 00:01:24.660
+machine.
+
+00:01:25.760 --> 00:01:32.536
 Each month you need three files. One: a settlement export from Auction Flex. The plain
 
-00:01:10.702 --> 00:01:17.639
+00:01:32.536 --> 00:01:39.548
 Consignor Summary, Consignment Order totals, or item-level totals all work; use whichever
 
-00:01:17.639 --> 00:01:24.575
+00:01:39.548 --> 00:01:46.403
 report you already run. Two: the QuickBooks IIF file that Auction Flex's Pay Consignors
 
-00:01:24.575 --> 00:01:31.355
+00:01:46.403 --> 00:01:53.101
 tool exports. Three: your trust account bank statement, as CSV, Excel, or your bank's
 
-00:01:31.355 --> 00:01:32.680
+00:01:53.101 --> 00:01:54.440
 Quicken download.
 
-00:01:33.780 --> 00:01:40.186
+00:01:55.540 --> 00:02:02.156
 Under Option A, choose the three files. Then enter the auction number, the trust account's
 
-00:01:40.186 --> 00:01:46.449
+00:02:02.156 --> 00:02:08.624
 opening balance on the first day of the period, and the as-of date. In the practice set,
 
-00:01:46.449 --> 00:01:52.641
-that's auction 246, an opening balance of one hundred fifty thousand dollars,
+00:02:08.624 --> 00:02:15.093
+that's auction 246, an opening balance of one hundred fifty thousand dollars, and August
 
-00:01:52.641 --> 00:01:56.200
-and August thirty-first. Click Run reconciliation.
+00:02:15.093 --> 00:02:17.960
+thirty-first. Click Run reconciliation.
 
-00:01:57.300 --> 00:02:03.193
+00:02:19.060 --> 00:02:24.953
 The result is one line: In balance, or Out of balance. Below it, the three numbers that
 
-00:02:03.193 --> 00:02:09.154
+00:02:24.953 --> 00:02:30.914
 have to agree: the bank's adjusted balance, the trust control balance from your records,
 
-00:02:09.154 --> 00:02:15.116
+00:02:30.914 --> 00:02:36.876
 and the total owed to consignors. In the practice month they don't agree, and the report
 
-00:02:15.116 --> 00:02:17.080
+00:02:36.876 --> 00:02:38.840
 says so instead of hiding it.
 
-00:02:18.180 --> 00:02:24.458
+00:02:39.940 --> 00:02:46.218
 Every gap becomes a numbered exception in plain English. Here, a consignor check cleared
 
-00:02:24.458 --> 00:02:30.665
+00:02:46.218 --> 00:02:52.425
 for five hundred dollars more than the ledger recorded. Further down, a deposit with no
 
-00:02:30.665 --> 00:02:36.372
+00:02:52.425 --> 00:02:58.132
 matching auction, and a transfer to the operating account with no authorization.
 
-00:02:36.372 --> 00:02:41.580
+00:02:58.132 --> 00:03:03.340
 SaleLedger never guesses at an explanation. It tells you what to look at.
 
-00:02:42.680 --> 00:02:48.623
-The report ends with a check register: date, payee, check number, and amount. That is
+00:03:04.440 --> 00:03:10.333
+The report ends with a check register: date, check number, payee, and amount, taken
 
-00:02:48.623 --> 00:02:54.776
-exactly what state bookkeeping rules like Wisconsin's ask for. Keep the report with your
+00:03:10.333 --> 00:03:16.510
+straight from your QuickBooks export. That is exactly what state bookkeeping rules like
 
-00:02:54.776 --> 00:02:59.600
-monthly records, and you're audit-ready without doing anything extra.
+00:03:16.510 --> 00:03:17.930
+Wisconsin's ask for.
 
-00:03:00.700 --> 00:03:07.575
+00:03:19.030 --> 00:03:25.173
+Above the report: save it as a file, export the numbers to a spreadsheet, print it or save
+
+00:03:25.173 --> 00:03:31.044
+it as a PDF, or email it to your bookkeeper. Keep a copy with the month's records, and
+
+00:03:31.044 --> 00:03:34.320
+you're audit-ready without doing anything extra.
+
+00:03:35.420 --> 00:03:42.295
 Next month, SaleLedger pre-fills the opening balance from the bank's actual ending balance
 
-00:03:07.575 --> 00:03:14.145
+00:03:42.295 --> 00:03:48.865
 last period, so you never retype it. Bring in three new files, click Run, and read the
 
-00:03:14.145 --> 00:03:18.270
+00:03:48.865 --> 00:03:52.990
 result. That's the whole routine. Thanks for watching.
