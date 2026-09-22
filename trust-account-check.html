@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F;
+    --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07); --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .measure { max-width: 640px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--green); text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 600; margin: 0 0 18px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 28px; line-height: 1.2; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-soft); }
+  .intro { padding: 60px 32px 36px; }
+  section { padding: 44px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+  .video-frame { background: var(--green); border-radius: 6px; padding: 6px; box-shadow: 0 12px 40px rgba(17, 44, 37, 0.18); }
+  video { display: block; width: 100%; height: auto; border-radius: 3px; background: #000; }
+  .video-meta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  .practice { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: start; }
+  .practice-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 26px; }
+  .practice-card dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 14px 0 0; font-size: 15.5px; }
+  .practice-card dt { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); padding-top: 3px; }
+  .practice-card dd { margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  .files { list-style: none; padding: 0; margin: 12px 0 0; }
+  .files li { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--rule); font-size: 15.5px; }
+  .files li:last-child { border-bottom: none; }
+  .files code { font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--green); }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  .step:last-child { border-bottom: none; }
+  .step .n { counter-increment: step; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--brass); padding-top: 6px; }
+  .step .n::before { content: counter(step, decimal-leading-zero); }
+  .step p { max-width: 640px; }
+  .step .note { border-left: 3px solid var(--brass); padding: 10px 14px; background: rgba(138, 101, 48, 0.08); font-size: 15px; margin-top: 10px; max-width: 640px; }
+  .step .caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .step img { display: block; width: 100%; max-width: 640px; border: 1px solid var(--rule); border-radius: 4px; margin: 14px 0 6px; }
+  .step figcaption { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 640px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 16px; }
+  .checklist li::before { content: ""; flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; border: 1.5px solid var(--green); border-radius: 3px; }
+  .final-cta { text-align: left; padding: 56px 0 64px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .legal-links { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); width: 100%; margin-top: 8px; }
+  .legal-links a { color: var(--ink-soft); }
+  .legal-note { font-size: 13px; color: var(--ink-soft); max-width: 760px; margin: 10px 0 0; line-height: 1.5; width: 100%; }
+  .consent { font-size: 13px; color: var(--ink-soft); }
+  footer .tagline { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .practice { grid-template-columns: 1fr; }
+    .files li { grid-template-columns: 1fr; gap: 2px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; }
+    nav { gap: 16px; }
+    nav a:not(.btn-primary) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+<title>Auction trust account three-way reconciliation check — free calculator — SaleLedger</title>
+<meta name="description" content="Free tool for auction houses and estate sale companies: enter the bank statement figures, your trust ledger and what you owe each consignor; see the bank adjusted balance, trust control balance and consignor subledger side by side and exactly how far out of balance you are. Nothing leaves your browser.">
+<link rel="canonical" href="https://getsaleledger.com/trust-account-check.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="SaleLedger"><meta property="og:title" content="Auction trust account three-way reconciliation check — free calculator"><meta property="og:description" content="Free tool for auction houses and estate sale companies: enter the bank statement figures, your trust ledger and what you owe each consignor; see the bank adjusted balance, trust control balance and consignor subledger side by side and exactly how far out of balance you are. Nothing leaves your browser."><meta property="og:url" content="https://getsaleledger.com/trust-account-check.html"><meta name="twitter:card" content="summary">
+
+<style>
+  .g{max-width:860px;margin:0 auto;padding:40px 20px 80px;line-height:1.6}
+  .g h1{font-size:36px;line-height:1.1;margin:8px 0 14px}.g h2{font-size:22px;margin:34px 0 10px}.g h3{font-size:17px;margin:22px 0 6px}
+  .g p,.g li{max-width:720px}.g .lede{font-size:18px;opacity:.85;max-width:720px}
+  .g .note{border-left:3px solid currentColor;padding:10px 14px;margin:14px 0;max-width:720px;background:rgba(0,0,0,.04);font-size:15px}
+  .g .caution{background:rgba(160,40,40,.07);border-left-color:#7a2626}
+  .calc{border:1px solid rgba(0,0,0,.15);border-radius:10px;padding:22px 24px;background:rgba(255,255,255,.7);margin:18px 0}
+  .calc fieldset{border:none;padding:0;margin:0 0 14px}.calc legend{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-bottom:8px}
+  .calc .row{display:grid;grid-template-columns:1fr 200px;gap:10px 16px;align-items:center;padding:7px 0;border-bottom:1px dashed rgba(0,0,0,.12)}
+  .calc .row label{font-size:15px}.calc .row small{display:block;opacity:.7;font-size:12.5px}
+  .calc input[type=text],.calc input[type=number],.calc select{width:100%;font:inherit;font-size:15px;padding:8px 10px;border:1px solid rgba(0,0,0,.25);border-radius:6px;background:#fff;text-align:right;font-variant-numeric:tabular-nums}
+  .calc select{text-align:left}
+  .calc .sub{margin:10px 0 0}.calc .sub .row{grid-template-columns:1fr 150px 130px 36px}
+  .calc .sub input[type=text].name{text-align:left}
+  .calc .add{font:inherit;font-size:13px;background:none;border:1px solid rgba(0,0,0,.3);border-radius:6px;padding:6px 10px;cursor:pointer;margin-top:8px}
+  .calc .x{background:none;border:none;font-size:18px;cursor:pointer;opacity:.6}.calc .x:hover{opacity:1}
+  .result{margin-top:18px;border-radius:8px;padding:16px 18px;border:1px solid rgba(0,0,0,.15)}
+  .result .big{font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+  .result.ok{background:rgba(31,111,74,.10);border-color:rgba(31,111,74,.5)}.result.bad{background:rgba(122,38,38,.08);border-color:rgba(122,38,38,.5)}.result.warn{background:rgba(138,101,48,.10);border-color:rgba(138,101,48,.5)}
+  .result table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:10px}.result td{padding:5px 0;border-bottom:1px solid rgba(0,0,0,.1)}.result td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .result ul{margin:10px 0 0;padding-left:20px;font-size:14.5px}
+  .meter{height:10px;border-radius:5px;background:rgba(0,0,0,.1);position:relative;margin:10px 0 4px;overflow:hidden}.meter i{position:absolute;left:0;top:0;bottom:0;background:#1f6f4a}.meter.bad i{background:#7a2626}.meter b{position:absolute;top:-2px;width:2px;height:14px;background:#000;opacity:.5}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.actions button{font:inherit;font-size:13px;border:1px solid rgba(0,0,0,.3);border-radius:6px;padding:7px 12px;background:#fff;cursor:pointer}
+  .g .cta{border:1px solid rgba(0,0,0,.15);border-radius:10px;padding:22px 24px;margin-top:30px;background:rgba(255,255,255,.6)}.g .cta h2{margin-top:0}
+  .g .cta .btn{display:inline-block;padding:11px 20px;border-radius:6px;background:#173e32;color:#fff !important;text-decoration:none;font-weight:600;margin-top:8px}
+  @media (max-width:640px){.calc .row{grid-template-columns:1fr}.calc .sub .row{grid-template-columns:1fr 1fr 1fr 36px}}
+  @media print{header,footer,.g .cta,.actions{display:none}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Auction trust account three-way reconciliation check — free calculator", "description": "Free tool for auction houses and estate sale companies: enter the bank statement figures, your trust ledger and what you owe each consignor; see the bank adjusted balance, trust control balance and consignor subledger side by side and exactly how far out of balance you are. Nothing leaves your browser.", "url": "https://getsaleledger.com/trust-account-check.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any (browser)", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Profitpin LLC", "url": "https://profitpingroup.com/"}}</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Free tool</span>
+  <h1>Trust account three-way check.</h1>
+  <p class="lede measure">The monthly test every auction trust account has to pass: bank adjusted balance = trust control balance = consignor subledger total. Enter the figures; see the three balances side by side and the exact difference. Nothing is uploaded — it runs in your browser.</p>
+</div>
+<section class="rule-top guide">
+<div class="wrap g" style="padding-top:0">
+  <div class="calc" id="calc">
+    <fieldset><legend>1 · Bank</legend>
+      <div class="row"><label for="bank_end">Statement ending balance</label><input type="text" id="bank_end" inputmode="decimal" placeholder="0.00"></div>
+      <div class="row"><label for="dit">Deposits in transit<small>Received and recorded, not yet on the statement</small></label><input type="text" id="dit" inputmode="decimal" placeholder="0.00"></div>
+      <div class="row"><label for="ochk">Outstanding checks<small>Written, not yet cleared</small></label><input type="text" id="ochk" inputmode="decimal" placeholder="0.00"></div>
+    </fieldset>
+    <fieldset><legend>2 · Your trust ledger</legend>
+      <div class="row"><label for="open">Opening balance<small>Last month's reconciled ending balance</small></label><input type="text" id="open" inputmode="decimal" placeholder="0.00"></div>
+      <div class="row"><label for="rec">Receipts this period<small>Buyer payments, deposits, interest</small></label><input type="text" id="rec" inputmode="decimal" placeholder="0.00"></div>
+      <div class="row"><label for="dis">Disbursements this period<small>Consignor payouts, refunds, commission transfers, fees</small></label><input type="text" id="dis" inputmode="decimal" placeholder="0.00"></div>
+    </fieldset>
+    <fieldset><legend>3 · Who the money belongs to</legend>
+      <div class="sub" id="subs"></div>
+      <button type="button" class="add" id="addsub">+ Add consignor / buyer credit</button>
+      <p style="font-size:13px;opacity:.75;margin:10px 0 0">List what is still owed to each consignor at period end (and any buyer credits held). Your earned commission is <i>not</i> trust money — if it is still in the account, add it as its own line so it is visible.</p>
+    </fieldset>
+    <div class="result" id="out" hidden></div>
+    <div class="actions"><button type="button" id="print">Print / save as PDF</button><button type="button" id="reset">Clear</button></div>
+  </div>
+  <div class="note caution">An arithmetic aid, not legal or accounting advice. Your state auction board's rules and your CPA govern what you must keep and how. See the <a href="auction-trust-account-reconciliation.html">monthly reconciliation guide</a> for the routine, the exceptions and what to retain.</div>
+
+  <h2>What the three balances mean</h2>
+  <p><b>Bank adjusted balance</b> = statement ending + deposits in transit − outstanding checks. <b>Trust control balance</b> = opening + receipts − disbursements. <b>Consignor subledger</b> = the sum of what is owed to each person. If 1 ≠ 2 something hit the bank that is not in your books (or vice-versa). If 2 ≠ 3 your books are internally inconsistent — someone was over- or under-paid, or money is sitting in trust with no owner. Every difference needs a named explanation, never a plug.</p>
+
+  <div class="cta">
+    <span class="section-num">FROM YOUR EXPORTS, EVERY MONTH</span>
+    <h2>SaleLedger fills this in from your files and names every exception.</h2>
+    <p>Bring in the Auction Flex settlement export, the QuickBooks file and the bank statement. It computes the three balances, lists every mismatch, unmatched deposit, unauthorized transfer and bank fee by name, writes the check register and keeps the history — on your own computer. $129.00/month, first 30 days free.</p>
+    <a class="btn btn-primary" href="https://license.getsaleledger.com/checkout">Start free month ↗</a>
+  </div>
+</div>
+</section>
+<script>
+(function(){
+
+function cents(v){ v=String(v||'').replace(/[^0-9.\-]/g,''); if(!v||v==='-'||v==='.') return 0; var neg=v[0]==='-'; v=v.replace('-',''); var p=v.split('.'); var d=parseInt(p[0]||'0',10); var c=((p[1]||'')+'00').slice(0,2); var n=d*100+parseInt(c,10); return neg?-n:n; }
+function fmt(c){ var neg=c<0; c=Math.abs(c); var s=Math.floor(c/100).toLocaleString('en-US')+'.'+String(c%100).padStart(2,'0'); return (neg?'−$':'$')+s; }
+function tidy(inp){ var c=cents(inp.value); inp.value = c===0 && inp.value.trim()==='' ? '' : fmt(c).replace('$','').replace('−','-'); }
+
+  var ids=['bank_end','dit','ochk','open','rec','dis']; var el={}; ids.forEach(function(i){ el[i]=document.getElementById(i); el[i].addEventListener('input',calc); el[i].addEventListener('blur',function(){tidy(this);calc();}); });
+  var subs=document.getElementById('subs'), out=document.getElementById('out');
+  function row(){ var d=document.createElement('div'); d.className='row'; d.style.gridTemplateColumns='1fr 150px 36px';
+    d.innerHTML='<input type="text" class="name" placeholder="Consignor / buyer credit / commission"><input type="text" class="amt" inputmode="decimal" placeholder="Owed 0.00"><button type="button" class="x" title="Remove">×</button>';
+    d.querySelector('.x').onclick=function(){ d.remove(); calc(); }; d.querySelectorAll('input').forEach(function(i){ i.addEventListener('input',calc); }); d.querySelector('.amt').addEventListener('blur',function(){tidy(this);calc();}); subs.appendChild(d); return d; }
+  function calc(){
+    var v={}; ids.forEach(function(i){ v[i]=cents(el[i].value); });
+    var any=ids.some(function(i){ return el[i].value.trim()!==''; });
+    var bank=v.bank_end+v.dit-v.ochk, control=v.open+v.rec-v.dis, sub=0, lines=[];
+    subs.querySelectorAll('.row').forEach(function(r){ var a=cents(r.querySelector('.amt').value); if(!a && r.querySelector('.amt').value.trim()==='') return; any=true; sub+=a; lines.push([r.querySelector('.name').value.trim()||'(unnamed)', a]); });
+    if(!any){ out.hidden=true; return; } out.hidden=false;
+    var d12=bank-control, d23=control-sub, ok=(d12===0 && d23===0);
+    out.className='result '+(ok?'ok':'bad');
+    var h='<div class="big">'+(ok?'IN BALANCE':'OUT OF BALANCE')+'</div>';
+    h+='<table><tr><td>1 · Bank adjusted balance <span style="opacity:.6">('+fmt(v.bank_end)+' + '+fmt(v.dit)+' − '+fmt(v.ochk)+')</span></td><td><b>'+fmt(bank)+'</b></td></tr>';
+    h+='<tr><td>2 · Trust control balance <span style="opacity:.6">('+fmt(v.open)+' + '+fmt(v.rec)+' − '+fmt(v.dis)+')</span></td><td><b>'+fmt(control)+'</b></td></tr>';
+    h+='<tr><td>3 · Consignor subledger total <span style="opacity:.6">('+lines.length+' line'+(lines.length===1?'':'s')+')</span></td><td><b>'+fmt(sub)+'</b></td></tr>';
+    h+='<tr><td>Bank vs. books (1 − 2)</td><td>'+(d12===0?'agrees':fmt(d12))+'</td></tr><tr><td>Books vs. owed (2 − 3)</td><td>'+(d23===0?'agrees':fmt(d23))+'</td></tr></table>';
+    var tips=[];
+    if(d12>0) tips.push('The bank holds '+fmt(d12)+' more than your books show: an unrecorded deposit, a bank credit, or a disbursement recorded but never sent. Find it by name — a deposit with no auction behind it is the first thing an examiner asks about.');
+    if(d12<0) tips.push('Your books show '+fmt(-d12)+' more than the bank: an unrecorded bank fee or wire, a check that cleared for a different amount, or a deposit recorded that never arrived.');
+    if(d23>0) tips.push(fmt(d23)+' is in trust with no owner in the subledger: earned commission not yet moved to operating, a settlement not yet entered, or an over-collection. Either give it an owner or move it out with the settlement that supports it.');
+    if(d23<0) tips.push('You owe consignors '+fmt(-d23)+' more than the books hold: a consignor was overpaid, a settlement was under-recorded, or funds were transferred to operating without a settlement. This is the finding boards act on — resolve it before month-end closes.');
+    if(ok) tips.push('All three agree. Record the report with the date, the three figures and any timing items, and carry the ending balance forward.');
+    h+='<ul>'+tips.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul>';
+    out.innerHTML=h;
+  }
+  document.getElementById('addsub').onclick=function(){ row().querySelector('.name').focus(); };
+  document.getElementById('print').onclick=function(){ window.print(); };
+  document.getElementById('reset').onclick=function(){ ids.forEach(function(i){ el[i].value=''; }); subs.innerHTML=''; row(); row(); row(); out.hidden=true; };
+  row(); row(); row();
+})();
+</script>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <span class="tagline">Practice files are fictional. Questions: <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></span>
+    <div class="legal-links"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refunds.html">Refunds &amp; cancellation</a> · <a href="licenses.html">Third-party notices</a></div>
+    <p class="legal-note">Auction Flex, HiBid, and QuickBooks are trademarks of their respective owners. SaleLedger is independent software and is not affiliated with, endorsed by, or certified by them or by any state licensing board. SaleLedger checks records; it does not provide accounting or legal advice and does not file anything on your behalf.</p>
+  </div>
+</footer>
+
+<script src="/lead-source.js" defer></script></body>
+</html>
