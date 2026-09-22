@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F;
+    --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07); --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .measure { max-width: 640px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--green); text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 600; margin: 0 0 18px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 28px; line-height: 1.2; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-soft); }
+  .intro { padding: 60px 32px 36px; }
+  section { padding: 44px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+  .video-frame { background: var(--green); border-radius: 6px; padding: 6px; box-shadow: 0 12px 40px rgba(17, 44, 37, 0.18); }
+  video { display: block; width: 100%; height: auto; border-radius: 3px; background: #000; }
+  .video-meta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  .practice { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: start; }
+  .practice-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 26px; }
+  .practice-card dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 14px 0 0; font-size: 15.5px; }
+  .practice-card dt { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); padding-top: 3px; }
+  .practice-card dd { margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  .files { list-style: none; padding: 0; margin: 12px 0 0; }
+  .files li { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--rule); font-size: 15.5px; }
+  .files li:last-child { border-bottom: none; }
+  .files code { font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--green); }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  .step:last-child { border-bottom: none; }
+  .step .n { counter-increment: step; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--brass); padding-top: 6px; }
+  .step .n::before { content: counter(step, decimal-leading-zero); }
+  .step p { max-width: 640px; }
+  .step .note { border-left: 3px solid var(--brass); padding: 10px 14px; background: rgba(138, 101, 48, 0.08); font-size: 15px; margin-top: 10px; max-width: 640px; }
+  .step .caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .step img { display: block; width: 100%; max-width: 640px; border: 1px solid var(--rule); border-radius: 4px; margin: 14px 0 6px; }
+  .step figcaption { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 640px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 16px; }
+  .checklist li::before { content: ""; flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; border: 1.5px solid var(--green); border-radius: 3px; }
+  .final-cta { text-align: left; padding: 56px 0 64px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .legal-links { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); width: 100%; margin-top: 8px; }
+  .legal-links a { color: var(--ink-soft); }
+  .legal-note { font-size: 13px; color: var(--ink-soft); max-width: 760px; margin: 10px 0 0; line-height: 1.5; width: 100%; }
+  .consent { font-size: 13px; color: var(--ink-soft); }
+  footer .tagline { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .practice { grid-template-columns: 1fr; }
+    .files li { grid-template-columns: 1fr; gap: 2px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; }
+    nav { gap: 16px; }
+    nav a:not(.btn-primary) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<style>
+  .guide h2 { margin-top: 8px; }
+  .guide p, .guide li { max-width: 680px; }
+  .guide ul, .guide ol { padding-left: 22px; margin: 0 0 16px; }
+  .guide li { margin-bottom: 8px; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 8px; }
+  .three div { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
+  .three .k { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); }
+  .three .v { font-size: 15.5px; margin-top: 6px; }
+  .eq { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); margin: 0 0 14px; }
+  table.exc { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--rule); font-size: 15.5px; margin: 12px 0 8px; }
+  table.exc th, table.exc td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.exc th { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); font-weight: 500; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 680px; }
+  .checklist li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--rule); }
+  .checklist li::before { content: ""; width: 16px; height: 16px; border: 1.5px solid var(--green); border-radius: 3px; margin-top: 5px; }
+  .callout { border-left: 3px solid var(--brass); padding: 12px 16px; background: rgba(138,101,48,.08); max-width: 680px; margin: 14px 0; font-size: 15.5px; }
+  .callout.caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .cta-box { background: var(--green); color: var(--bg); border-radius: 6px; padding: 28px 30px; margin-top: 10px; }
+  .cta-box h2 { color: var(--bg); }
+  .cta-box p { color: rgba(246,243,235,.85); max-width: 640px; }
+  .cta-box .btn-primary { background: var(--bg); color: var(--green) !important; border-color: var(--bg); }
+  .cta-box a { color: var(--bg); }
+  .toc { font-family: 'IBM Plex Mono', monospace; font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 6px 0 0; }
+  .toc a { text-decoration: none; color: var(--ink-soft); } .toc a:hover { color: var(--green); }
+  @media print { header, footer, .cta-box, .toc { display: none; } body { background: #fff; font-size: 12.5pt; } section { padding: 14px 0; } }
+  @media (max-width: 720px) { .three { grid-template-columns: 1fr; } table.exc { font-size: 14px; } }
+</style>
+
+<title>The three files behind an auction trust reconciliation: Auction Flex export, QuickBooks IIF, bank statement — SaleLedger</title>
+<meta name="description" content="Which Auction Flex report to run, how to get the QuickBooks/IIF payout file, which bank statement format works, and the four things that make the three files fail to line up — for auction houses reconciling a trust account.">
+<link rel="canonical" href="https://getsaleledger.com/auction-flex-quickbooks-bank-exports.html">
+<meta property="og:type" content="article"><meta property="og:site_name" content="SaleLedger"><meta property="og:title" content="The three files behind an auction trust reconciliation: Auction Flex export, QuickBooks IIF, bank statement"><meta property="og:description" content="Which Auction Flex report to run, how to get the QuickBooks/IIF payout file, which bank statement format works, and the four things that make the three files fail to line up — for auction houses reconciling a trust account."><meta property="og:url" content="https://getsaleledger.com/auction-flex-quickbooks-bank-exports.html"><meta name="twitter:card" content="summary">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "HowTo", "name": "The three files behind an auction trust reconciliation: Auction Flex export, QuickBooks IIF, bank statement", "description": "Which Auction Flex report to run, how to get the QuickBooks/IIF payout file, which bank statement format works, and the four things that make the three files fail to line up — for auction houses reconciling a trust account.", "step": [{"@type": "HowToStep", "name": "Run the settlement export", "text": "In Auction Flex, run Consignor Summary (Reports #21/#23), Totals by Consignment Order (#24/#25) or Totals by Item (#26/#27) for the auction and save as CSV."}, {"@type": "HowToStep", "name": "Export the payouts to QuickBooks", "text": "Pay Consignors → Export to QuickBooks for the same auction produces the IIF file with check numbers and dates."}, {"@type": "HowToStep", "name": "Download the trust account statement", "text": "CSV or Excel from online banking, or the Quicken/QuickBooks Web Connect file (OFX/QFX), for the full period."}, {"@type": "HowToStep", "name": "Check the four alignment points", "text": "Same auction numbers, same consignor spelling in both files, one period, every active auction included."}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which Auction Flex report do I use for trust reconciliation?", "acceptedAnswer": {"@type": "Answer", "text": "Any of Consignor Summary, Totals by Consignment Order or Totals by Item — whichever you already run — saved as CSV, together with the Export to QuickBooks IIF file for the same auction."}}, {"@type": "Question", "name": "Why does a consignor's payout disappear from the reconciliation?", "acceptedAnswer": {"@type": "Answer", "text": "Almost always a name spelled differently in the settlement export and the QuickBooks file. Fix the spelling at the source; matching by name is deliberate so nothing is guessed."}}, {"@type": "Question", "name": "Can I use a PDF bank statement?", "acceptedAnswer": {"@type": "Answer", "text": "No — use the CSV, Excel or OFX/QFX download from online banking so every transaction has a machine-readable date and amount."}}]}]</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Guide</span>
+  <h1>The three files behind a trust reconciliation.</h1>
+  <p class="lede measure">Which Auction Flex report to run, how to get the QuickBooks payout file, what your bank has to give you — and the four small things that make the three refuse to line up.</p>
+</div>
+<section class="rule-top guide"><div class="wrap">
+  <h2>1 · The settlement export (what you owe, and to whom)</h2>
+  <p>This is your auction software's statement of the auction: what sold, for how much, commission, fees and the net owed to each consignor. From Auction Flex any of these works — use the one you already run:</p>
+  <ul>
+    <li><b>Consignor Summary</b> — Reports #21 / #23. One line per consignor: the quickest for month-end.</li>
+    <li><b>Totals by Consignment Order</b> — #24 / #25. One line per consignment, useful when a consignor has several.</li>
+    <li><b>Totals by Item</b> — #26 / #27. Item level; biggest file, most detail.</li>
+  </ul>
+  <p>Save it as <b>CSV</b>, one file per auction. Run it <i>after</i> the final settlement, not before — a pre-settlement export changes when late fees or buybacks post.</p>
+  <h2>2 · The QuickBooks / IIF file (what you actually paid)</h2>
+  <p>In Auction Flex, <b>Pay Consignors → Export to QuickBooks</b> for the same auction. The IIF file carries what the settlement export does not: the <b>check number</b>, the <b>payee</b> as it went to the bank and the <b>date</b> the payout was made. That is what gets matched against cleared checks and what fills the check register your state board asks for.</p>
+  <div class="callout">One auction, one settlement export, one IIF. If a month had three auctions, bring three of each. An auction you leave out shows up as unexplained deposits and checks.</div>
+  <h2>3 · The trust account bank statement (what the bank saw)</h2>
+  <p>Download it for the full period from online banking as <b>CSV</b>, <b>Excel</b>, or the Quicken / QuickBooks "Web Connect" file (<b>OFX/QFX</b>). Not a PDF — a PDF has no machine-readable dates and amounts, and retyping it is where errors start. Only the trust account: the operating account's statement is not part of this.</p>
+  <h2>The four alignment points</h2>
+  <table class="exc"><thead><tr><th>Point</th><th>What goes wrong</th><th>Fix</th></tr></thead><tbody>
+    <tr><td><b>Consignor spelling</b></td><td>"J. Smith Estate" in the settlement, "Smith, J Estate" in QuickBooks: the payout is left out and named as unmatched.</td><td>Fix the spelling in the source system, then re-export. Matching by name is deliberate — nothing is guessed.</td></tr>
+    <tr><td><b>Auction number</b></td><td>Two exports for different auctions, or the IIF from last month's auction.</td><td>Check the auction number on every file before you run.</td></tr>
+    <tr><td><b>Period</b></td><td>Statement from the 1st to the 31st, settlement dated the 2nd of next month.</td><td>Pick one convention (calendar month, or the auction's settlement window) and keep it.</td></tr>
+    <tr><td><b>Opening balance</b></td><td>Typed from today's online balance instead of last month's reconciled ending balance.</td><td>Carry forward the reconciled figure; SaleLedger pre-fills it from the previous period.</td></tr>
+  </tbody></table>
+  <h2>Practice with fictional files first</h2>
+  <p>The <a href="tutorial.html">tutorial</a> ships one fictional auction month shaped exactly like these three exports, so you can see an out-of-balance result and its exception list before you touch your own records. The monthly routine itself is in the <a href="auction-trust-account-reconciliation.html">reconciliation guide</a>; the arithmetic is in the <a href="trust-account-check.html">free three-way check</a>.</p>
+</div></section>
+<section class="rule-top"><div class="wrap cta-box">
+  <span class="section-num" style="color:rgba(246,243,235,.7)">THREE FILES IN, EVERY GAP NAMED</span>
+  <h2>SaleLedger reads all three and does the rest.</h2>
+  <p>Choose the settlement export, the IIF and the statement; enter the auction number and opening balance; click Run. It computes the three balances, lists every exception in plain English, writes the check register and keeps the history — on your own computer. $129.00/month, first 30 days free.</p>
+  <p><a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month ↗</a></p>
+</div></section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <span class="tagline">Practice files are fictional. Questions: <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></span>
+    <div class="legal-links"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refunds.html">Refunds &amp; cancellation</a> · <a href="licenses.html">Third-party notices</a></div>
+    <p class="legal-note">Auction Flex, HiBid, and QuickBooks are trademarks of their respective owners. SaleLedger is independent software and is not affiliated with, endorsed by, or certified by them or by any state licensing board. SaleLedger checks records; it does not provide accounting or legal advice and does not file anything on your behalf.</p>
+  </div>
+</footer>
+<script src="/lead-source.js" defer></script>
+</body>
+</html>
