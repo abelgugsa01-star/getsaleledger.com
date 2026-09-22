@@ -621,6 +621,7 @@
   }
 </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SaleLedger", "url": "https://getsaleledger.com/", "applicationCategory": "FinanceApplication", "operatingSystem": "Windows 10, Windows 11", "description": "Windows software that reconciles an auction house's trust (escrow) account each month: consignor settlements, buyer payments, bank statement, QuickBooks export. Finds every out-of-balance item and prints a reproducible report. $129/month, first 30 days free.", "publisher": {"@type": "Organization", "name": "Profitpin LLC", "url": "https://profitpingroup.com/"}, "offers": {"@type": "Offer", "price": "129.00", "priceCurrency": "USD", "url": "https://getsaleledger.com/", "description": "Monthly subscription, first 30 days free, cancel any time", "availability": "https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does my reporting data leave my computer?", "acceptedAnswer": {"@type": "Answer", "text": "No. SaleLedger processes your settlement records and bank statement locally. Nothing is uploaded to us as part of running a reconciliation. The app does make one small call about every six hours — sending only your license key — to confirm your subscription is active. If you're offline, it keeps working for a week on the last confirmation."}}, {"@type": "Question", "name": "Does SaleLedger file anything with my state board?", "acceptedAnswer": {"@type": "Answer", "text": "No. Most states don't require a periodic filing for auction trust accounts — they reserve the right to examine the account directly. SaleLedger prepares your records so you're ready if that happens; it doesn't submit anything on your behalf."}}, {"@type": "Question", "name": "What happens when information doesn't match?", "acceptedAnswer": {"@type": "Answer", "text": "It's flagged by name for your review — an unauthorized deduction, a disbursement mismatch, stale funds, and so on. SaleLedger never guesses an explanation or silently resolves a discrepancy for you."}}, {"@type": "Question", "name": "Which Auction Flex exports does it support?", "acceptedAnswer": {"@type": "Answer", "text": "Consignor Summary, Consignment Order-level, and item-level exports, combined with a QuickBooks/IIF file for transaction dates. If your export doesn't match cleanly, tell us — this is actively being built around real feedback."}}, {"@type": "Question", "name": "What do I need to start the free month?", "acceptedAnswer": {"@type": "Answer", "text": "A card, and about two minutes. Checkout is handled by Stripe; you're not charged for 30 days, and you can cancel before then from your billing page and never be charged. After checkout you get a license key and the download link."}}]}</script>
 </head>
 <body>
 
@@ -780,6 +781,28 @@
   </div>
 </section>
 
+
+<section class="fit" id="fit"><style>
+.fit{padding:44px 0}.fit .fit-wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+.fit h2{font-size:26px;line-height:1.2;margin:0 0 6px}.fit .fit-lede{opacity:.8;max-width:640px;margin:0 0 18px}
+.fit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fit-col{border:1px solid rgba(0,0,0,.15);border-radius:8px;padding:18px 20px;background:rgba(255,255,255,.55)}
+.fit-col h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;opacity:.75}
+.fit-col ul{margin:0;padding-left:18px}.fit-col li{margin-bottom:7px;font-size:15px;line-height:1.5}
+.fit-col.yes h3{color:#1f6f4a}.fit-col.no h3{color:#7a2626}
+@media(max-width:800px){.fit-grid{grid-template-columns:1fr}.fit .fit-wrap{padding:0 20px}}
+</style>
+  <div class="fit-wrap">
+    <span class="section-num">IS THIS FOR YOU?</span>
+    <h2>Built for one job. Here is whether it's yours.</h2>
+    <p class="fit-lede">SaleLedger does monthly trust-account reconciliation for auction businesses. It does that thoroughly and nothing else.</p>
+    <div class="fit-grid">
+      <div class="fit-col yes"><h3>A good fit if</h3><ul><li>You run an auction house or estate-sale company and hold consignor money in a trust account.</li><li>You settle in Auction Flex (or can export settlements as CSV) and pay consignors through QuickBooks.</li><li>You want a written monthly reconciliation and a check register you can hand to a state examiner.</li><li>You'd rather see every gap named than have software quietly balance the month.</li></ul></div>
+      <div class="fit-col no"><h3>Not the right tool if</h3><ul><li>You don't hold consignor funds (you sell your own inventory only).</li><li>Your settlements live only in a system with no CSV export.</li><li>You need general bookkeeping, invoicing or payroll — that's QuickBooks' job, not this.</li></ul></div>
+      <div class="fit-col"><h3>What it is not</h3><ul><li>Not accounting or legal advice, and it files nothing with any board.</li><li>Not a cloud service: your files never leave your computer.</li><li>Not a bank feed: you bring the statement export each month.</li></ul></div>
+    </div>
+  </div>
+</section>
 <section id="start" class="rule-top">
   <div class="wrap">
     <span class="section-num">04 / PRICING &amp; TRIAL</span>
