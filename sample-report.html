@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F;
+    --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07); --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .measure { max-width: 640px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--green); text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 600; margin: 0 0 18px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 28px; line-height: 1.2; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-soft); }
+  .intro { padding: 60px 32px 36px; }
+  section { padding: 44px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+  .video-frame { background: var(--green); border-radius: 6px; padding: 6px; box-shadow: 0 12px 40px rgba(17, 44, 37, 0.18); }
+  video { display: block; width: 100%; height: auto; border-radius: 3px; background: #000; }
+  .video-meta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  .practice { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: start; }
+  .practice-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 26px; }
+  .practice-card dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 14px 0 0; font-size: 15.5px; }
+  .practice-card dt { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); padding-top: 3px; }
+  .practice-card dd { margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  .files { list-style: none; padding: 0; margin: 12px 0 0; }
+  .files li { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--rule); font-size: 15.5px; }
+  .files li:last-child { border-bottom: none; }
+  .files code { font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--green); }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  .step:last-child { border-bottom: none; }
+  .step .n { counter-increment: step; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--brass); padding-top: 6px; }
+  .step .n::before { content: counter(step, decimal-leading-zero); }
+  .step p { max-width: 640px; }
+  .step .note { border-left: 3px solid var(--brass); padding: 10px 14px; background: rgba(138, 101, 48, 0.08); font-size: 15px; margin-top: 10px; max-width: 640px; }
+  .step .caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .step img { display: block; width: 100%; max-width: 640px; border: 1px solid var(--rule); border-radius: 4px; margin: 14px 0 6px; }
+  .step figcaption { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 640px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 16px; }
+  .checklist li::before { content: ""; flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; border: 1.5px solid var(--green); border-radius: 3px; }
+  .final-cta { text-align: left; padding: 56px 0 64px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .legal-links { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); width: 100%; margin-top: 8px; }
+  .legal-links a { color: var(--ink-soft); }
+  .legal-note { font-size: 13px; color: var(--ink-soft); max-width: 760px; margin: 10px 0 0; line-height: 1.5; width: 100%; }
+  .consent { font-size: 13px; color: var(--ink-soft); }
+  footer .tagline { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .practice { grid-template-columns: 1fr; }
+    .files li { grid-template-columns: 1fr; gap: 2px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; }
+    nav { gap: 16px; }
+    nav a:not(.btn-primary) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<style>
+  .guide h2 { margin-top: 8px; }
+  .guide p, .guide li { max-width: 680px; }
+  .guide ul, .guide ol { padding-left: 22px; margin: 0 0 16px; }
+  .guide li { margin-bottom: 8px; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 8px; }
+  .three div { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
+  .three .k { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); }
+  .three .v { font-size: 15.5px; margin-top: 6px; }
+  .eq { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); margin: 0 0 14px; }
+  table.exc { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--rule); font-size: 15.5px; margin: 12px 0 8px; }
+  table.exc th, table.exc td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.exc th { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); font-weight: 500; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 680px; }
+  .checklist li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--rule); }
+  .checklist li::before { content: ""; width: 16px; height: 16px; border: 1.5px solid var(--green); border-radius: 3px; margin-top: 5px; }
+  .callout { border-left: 3px solid var(--brass); padding: 12px 16px; background: rgba(138,101,48,.08); max-width: 680px; margin: 14px 0; font-size: 15.5px; }
+  .callout.caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .cta-box { background: var(--green); color: var(--bg); border-radius: 6px; padding: 28px 30px; margin-top: 10px; }
+  .cta-box h2 { color: var(--bg); }
+  .cta-box p { color: rgba(246,243,235,.85); max-width: 640px; }
+  .cta-box .btn-primary { background: var(--bg); color: var(--green) !important; border-color: var(--bg); }
+  .cta-box a { color: var(--bg); }
+  .toc { font-family: 'IBM Plex Mono', monospace; font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 6px 0 0; }
+  .toc a { text-decoration: none; color: var(--ink-soft); } .toc a:hover { color: var(--green); }
+  @media print { header, footer, .cta-box, .toc { display: none; } body { background: #fff; font-size: 12.5pt; } section { padding: 14px 0; } }
+  @media (max-width: 720px) { .three { grid-template-columns: 1fr; } table.exc { font-size: 14px; } }
+</style>
+
+<title>Sample SaleLedger reconciliation report — a fictional auction month, out of balance, every exception named — SaleLedger</title>
+<meta name="description" content="What a SaleLedger monthly trust reconciliation report looks like: the three balances, eight named exceptions (overpayment, unmatched deposit, transfer to operating, bank fee…), and the check register. Fictional practice data.">
+<link rel="canonical" href="https://getsaleledger.com/sample-report.html">
+<meta property="og:type" content="article"><meta property="og:site_name" content="SaleLedger"><meta property="og:title" content="Sample SaleLedger reconciliation report — a fictional auction month, out of balance, every exception named"><meta property="og:description" content="What a SaleLedger monthly trust reconciliation report looks like: the three balances, eight named exceptions (overpayment, unmatched deposit, transfer to operating, bank fee…), and the check register. Fictional practice data."><meta property="og:url" content="https://getsaleledger.com/sample-report.html"><meta name="twitter:card" content="summary">
+<style>
+
+  .sample {
+    --bg: #F6F3EB;
+    --panel: #FFFFFF;
+    --ink: #14201B;
+    --ink-soft: #3C463F;
+    --green: #112C25;
+    --brass: #8A6530;
+    --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07);
+    --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  .sample {
+    font-family: 'Spectral', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    padding: 48px 24px;
+    line-height: 1.6;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  .report-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 36px 40px;
+  }
+  h1 {
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--green);
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    color: #fff;
+  }
+  .status.balanced { background: #1D4438; }
+  .status.out-of-balance { background: var(--brick); }
+  .balance-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-size: 14.5px;
+  }
+  .balance-row:last-of-type { border-bottom: none; margin-bottom: 26px; }
+  .balance-row .label { color: var(--ink-soft); }
+  .balance-row .value { font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 30px 0 14px;
+  }
+  .exception {
+    border-left: 3px solid var(--brick);
+    background: var(--brick-bg);
+    padding: 12px 16px;
+    margin: 0 0 10px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .none { color: var(--ink-soft); font-style: italic; font-size: 14.5px; }
+  table { border-collapse: collapse; width: 100%; margin-top: 4px; }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: left;
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  td {
+    font-size: 14px;
+    padding: 9px 6px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  td.mono { font-family: 'IBM Plex Mono', monospace; }
+
+
+.sample{padding:0}.sample .report-card{max-width:820px;margin:0}
+.explain{max-width:680px}.explain li{margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+
+
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Sample report</span>
+  <h1>What the monthly report looks like.</h1>
+  <p class="lede measure">This is the real output for the practice month that ships with the <a href="tutorial.html">tutorial</a>: a fictional auction house, auction 246, opening balance $150,000.00, as of 2026-08-31. It is out of balance on purpose so you can see how every gap is named. No real business or person appears in it.</p>
+</div>
+<section class="rule-top"><div class="wrap">
+  <div class="sample">
+<div class="report-card">
+
+<h1>Trust Reconciliation
+  <span class="status out-of-balance">OUT OF BALANCE</span>
+</h1>
+<div class="balance-row"><span class="label">Bank adjusted balance</span><span class="value">$166,730.00</span></div>
+<div class="balance-row"><span class="label">Trust control balance</span><span class="value">$150,475.00</span></div>
+<div class="balance-row"><span class="label">Consignor subledger total</span><span class="value">$150,000.00</span></div>
+
+<h2>Exceptions (8)</h2>
+<div class="exception">1. DISBURSEMENT MISMATCH — Consignor A (Settlement payout - Auction 246 - STL-246): ledger recorded $27,200.00, but bank cleared $27,700.00 on 2026-08-09. Overpayment of $500.00.</div>
+<div class="exception">2. UNMATCHED RECEIPT — $20,000.00 deposit on 2026-08-12 (Deposit - buyer payment): no corresponding auction/consignor transaction found in the ledger.</div>
+<div class="exception">3. UNMATCHED DISBURSEMENT — $10,200.00 debited on 2026-08-15 (Check 1045 - Consignor D): no corresponding ledger entry or authorization found.</div>
+<div class="exception">4. UNMATCHED DISBURSEMENT — $2,950.00 debited on 2026-08-15 (Wire out - operating account transfer): no corresponding ledger entry or authorization found.</div>
+<div class="exception">5. UNMATCHED RECEIPT — $10,000.00 deposit on 2026-08-20 (Deposit - unidentified): no corresponding auction/consignor transaction found in the ledger.</div>
+<div class="exception">6. UNMATCHED RECEIPT — $18,360.00 deposit on 2026-08-21 (Deposit - buyer payment (Auction 248)): no corresponding auction/consignor transaction found in the ledger.</div>
+<div class="exception">7. UNMATCHED DISBURSEMENT — $18,360.00 debited on 2026-08-22 (Check 1046 - Consignor F): no corresponding ledger entry or authorization found.</div>
+<div class="exception">8. UNMATCHED DISBURSEMENT — $95.00 debited on 2026-08-31 (Monthly service fee): no corresponding ledger entry or authorization found.</div>
+
+<h2>Check Register</h2>
+<p class="none">Includes the bookkeeping fields named in Wisconsin SPS 125.12(1): date, payee, check number, amount. Whether your records meet your state's rules is for you and your accountant to determine.</p>
+<table>
+  <tr><th>Date</th><th>Check #</th><th>Payee</th><th>Amount</th></tr>
+  <tr><td class="mono">2026-08-09</td><td class="mono">1042</td><td>Consignor A</td><td class="mono">$27,200.00</td></tr>
+<tr><td class="mono">2026-08-09</td><td class="mono">1043</td><td>Consignor C</td><td class="mono">$29,150.00</td></tr>
+<tr><td class="mono">2026-08-10</td><td class="mono">1044</td><td>Consignor B</td><td class="mono">$15,425.00</td></tr>
+<tr><td class="mono">2026-08-10</td><td class="mono">(wire/transfer)</td><td>HOUSE</td><td class="mono">$12,750.00</td></tr>
+</table>
+
+
+</div>
+</div>
+</div></section>
+<section class="rule-top guide"><div class="wrap explain">
+  <h2>How to read it</h2>
+  <ul>
+    <li><b>The status line</b> is the answer: IN BALANCE or OUT OF BALANCE. There is no "close enough".</li>
+    <li><b>The three balances</b> are the three-way check — bank adjusted, trust control, consignor subledger. Here the bank holds $16,255.00 more than the books and the books hold $475.00 more than consignors are owed; the exceptions below account for every dollar of both.</li>
+    <li><b>Each exception</b> is one fact with a name, a date and an amount: an overpayment to chase, a deposit with no auction behind it, a transfer to operating with no settlement, a bank fee taken from trust. SaleLedger never resolves one for you.</li>
+    <li><b>The check register</b> (date, payee, check number, amount) is the record Wisconsin SPS 125.12 and similar rules ask for. It is produced from the QuickBooks/IIF file, not retyped.</li>
+    <li>The report prints, saves as CSV, and can be emailed from the app; every run is kept in a local history.</li>
+  </ul>
+  <p>The routine around this report is in the <a href="auction-trust-account-reconciliation.html">monthly reconciliation guide</a>. To produce it yourself with the same fictional files, follow the <a href="tutorial.html">tutorial</a>.</p>
+</div></section>
+<section class="rule-top"><div class="wrap cta-box">
+  <span class="section-num" style="color:rgba(246,243,235,.7)">YOUR OWN MONTH, IN MINUTES</span>
+  <h2>Run this on your records.</h2>
+  <p>Settlement export, QuickBooks file, bank statement — three files in, this report out, on your own computer. $129.00/month, first 30 days free, cancel any time.</p>
+  <p><a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month ↗</a></p>
+</div></section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <span class="tagline">Practice files are fictional. Questions: <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></span>
+    <div class="legal-links"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refunds.html">Refunds &amp; cancellation</a> · <a href="licenses.html">Third-party notices</a></div>
+    <p class="legal-note">Auction Flex, HiBid, and QuickBooks are trademarks of their respective owners. SaleLedger is independent software and is not affiliated with, endorsed by, or certified by them or by any state licensing board. SaleLedger checks records; it does not provide accounting or legal advice and does not file anything on your behalf.</p>
+  </div>
+</footer>
+<script src="/lead-source.js" defer></script>
+</body>
+</html>
