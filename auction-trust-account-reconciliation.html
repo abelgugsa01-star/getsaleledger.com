@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to reconcile an auction trust account every month (three-way check + checklist) — SaleLedger</title>
+<meta name="description" content="A plain-English monthly routine for auction houses and estate sale companies: the three balances that have to agree, the eight exceptions that break them, what your state expects you to keep, and a printable checklist.">
+<link rel="canonical" href="https://getsaleledger.com/auction-trust-account-reconciliation.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SaleLedger">
+<meta property="og:title" content="How to reconcile an auction trust account every month (three-way check + checklist)">
+<meta property="og:description" content="A plain-English monthly routine for auction houses and estate sale companies: the three balances that have to agree, the eight exceptions that break them, what your state expects you to keep, and a printable checklist.">
+<meta property="og:url" content="https://getsaleledger.com/auction-trust-account-reconciliation.html">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F3EB; --panel: #FFFFFF; --ink: #14201B; --ink-soft: #3C463F;
+    --green: #112C25; --green-mid: #1D4438; --brass: #8A6530; --brick: #7A2626;
+    --brick-bg: rgba(122, 38, 38, 0.07); --rule: rgba(17, 44, 37, 0.18);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Spectral', Georgia, serif; font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--green-mid); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .measure { max-width: 640px; }
+  header { padding: 22px 0; border-bottom: 1px solid var(--rule); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .brandmark .icon-mark { width: 30px; height: 30px; flex-shrink: 0; background: var(--green); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+  .brandmark .icon-mark svg { width: 16px; height: 16px; color: var(--bg); }
+  .brandmark .text-stack { display: flex; flex-direction: column; line-height: 1.15; }
+  .brandmark .name { font-weight: 600; font-size: 18px; color: var(--green); letter-spacing: -0.01em; }
+  .brandmark .by { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--ink-soft); text-transform: uppercase; margin-top: 1px; }
+  nav { display: flex; align-items: center; gap: 30px; }
+  nav a { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--green); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--bg) !important; text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; border-radius: 3px; border: 1px solid var(--green); }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--green); text-decoration: none; padding: 11px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; border-radius: 3px; border: 1px solid var(--green); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: 12px; }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 600; margin: 0 0 18px; letter-spacing: -0.01em; text-wrap: balance; }
+  h2 { font-size: 28px; line-height: 1.2; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  h3 { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-soft); }
+  .intro { padding: 60px 0 36px; }
+  section { padding: 44px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+  .video-frame { background: var(--green); border-radius: 6px; padding: 6px; box-shadow: 0 12px 40px rgba(17, 44, 37, 0.18); }
+  video { display: block; width: 100%; height: auto; border-radius: 3px; background: #000; }
+  .video-meta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  .practice { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: start; }
+  .practice-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 24px 26px; }
+  .practice-card dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 14px 0 0; font-size: 15.5px; }
+  .practice-card dt { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); padding-top: 3px; }
+  .practice-card dd { margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  .files { list-style: none; padding: 0; margin: 12px 0 0; }
+  .files li { display: grid; grid-template-columns: 200px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--rule); font-size: 15.5px; }
+  .files li:last-child { border-bottom: none; }
+  .files code { font-family: 'IBM Plex Mono', monospace; font-size: 13.5px; color: var(--green); }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+  .step:last-child { border-bottom: none; }
+  .step .n { counter-increment: step; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--brass); padding-top: 6px; }
+  .step .n::before { content: counter(step, decimal-leading-zero); }
+  .step p { max-width: 640px; }
+  .step .note { border-left: 3px solid var(--brass); padding: 10px 14px; background: rgba(138, 101, 48, 0.08); font-size: 15px; margin-top: 10px; max-width: 640px; }
+  .step .caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .step img { display: block; width: 100%; max-width: 640px; border: 1px solid var(--rule); border-radius: 4px; margin: 14px 0 6px; }
+  .step figcaption { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  code { font-family: 'IBM Plex Mono', monospace; font-size: 0.92em; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 640px; }
+  .checklist li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 16px; }
+  .checklist li::before { content: ""; flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; border: 1.5px solid var(--green); border-radius: 3px; }
+  .final-cta { text-align: left; padding: 56px 0 64px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+  footer { border-top: 1px solid var(--rule); padding: 36px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  .legal-links { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); width: 100%; margin-top: 8px; }
+  .legal-links a { color: var(--ink-soft); }
+  .legal-note { font-size: 13px; color: var(--ink-soft); max-width: 760px; margin: 10px 0 0; line-height: 1.5; width: 100%; }
+  .consent { font-size: 13px; color: var(--ink-soft); }
+  footer .tagline { font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+  @media (max-width: 860px) {
+    h1 { font-size: 34px; }
+    .practice { grid-template-columns: 1fr; }
+    .files li { grid-template-columns: 1fr; gap: 2px; }
+    .step { grid-template-columns: 40px 1fr; gap: 12px; }
+    nav { gap: 16px; }
+    nav a:not(.btn-primary) { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<style>
+  .guide h2 { margin-top: 8px; }
+  .guide p, .guide li { max-width: 680px; }
+  .guide ul, .guide ol { padding-left: 22px; margin: 0 0 16px; }
+  .guide li { margin-bottom: 8px; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 18px 0 8px; }
+  .three div { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; }
+  .three .k { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); }
+  .three .v { font-size: 15.5px; margin-top: 6px; }
+  .eq { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-soft); margin: 0 0 14px; }
+  table.exc { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--rule); font-size: 15.5px; margin: 12px 0 8px; }
+  table.exc th, table.exc td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.exc th { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); font-weight: 500; }
+  .checklist { list-style: none; padding: 0; margin: 0; max-width: 680px; }
+  .checklist li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--rule); }
+  .checklist li::before { content: ""; width: 16px; height: 16px; border: 1.5px solid var(--green); border-radius: 3px; margin-top: 5px; }
+  .callout { border-left: 3px solid var(--brass); padding: 12px 16px; background: rgba(138,101,48,.08); max-width: 680px; margin: 14px 0; font-size: 15.5px; }
+  .callout.caution { border-left-color: var(--brick); background: var(--brick-bg); }
+  .cta-box { background: var(--green); color: var(--bg); border-radius: 6px; padding: 28px 30px; margin-top: 10px; }
+  .cta-box h2 { color: var(--bg); }
+  .cta-box p { color: rgba(246,243,235,.85); max-width: 640px; }
+  .cta-box .btn-primary { background: var(--bg); color: var(--green) !important; border-color: var(--bg); }
+  .cta-box a { color: var(--bg); }
+  .toc { font-family: 'IBM Plex Mono', monospace; font-size: 13px; display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 6px 0 0; }
+  .toc a { text-decoration: none; color: var(--ink-soft); } .toc a:hover { color: var(--green); }
+  @media print { header, footer, .cta-box, .toc { display: none; } body { background: #fff; font-size: 12.5pt; } section { padding: 14px 0; } }
+  @media (max-width: 720px) { .three { grid-template-columns: 1fr; } table.exc { font-size: 14px; } }
+</style>
+
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "HowTo", "name": "How to reconcile an auction trust account every month", "description": "A plain-English monthly routine for auction houses and estate sale companies: the three balances that have to agree, the eight exceptions that break them, what your state expects you to keep, and a printable checklist.", "totalTime": "PT2H", "step": [{"@type": "HowToStep", "name": "Fix the period", "text": "Use the calendar month or one auction's settlement window, the same way every time."}, {"@type": "HowToStep", "name": "Get the opening balance", "text": "Last month's reconciled ending bank balance."}, {"@type": "HowToStep", "name": "Pull three records", "text": "Settlement export, QuickBooks/IIF payout export, and the trust account bank statement for every auction with activity."}, {"@type": "HowToStep", "name": "List receipts and disbursements", "text": "Tie every deposit to an auction and every payout to a settlement."}, {"@type": "HowToStep", "name": "Compute the three balances", "text": "Bank adjusted balance, trust control balance, consignor subledger total."}, {"@type": "HowToStep", "name": "Explain every difference by name", "text": "Timing items are listed; everything else is an exception with a decision."}, {"@type": "HowToStep", "name": "Write it down and carry forward", "text": "Report, exception list and check register, signed and dated; ending balance becomes next month's opening."}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is a bank reconciliation in QuickBooks enough for an auction trust account?", "acceptedAnswer": {"@type": "Answer", "text": "It proves the books match the bank but not that the money in the bank is fully owed to identifiable consignors. The third comparison, against the consignor subledger, is what makes it a trust reconciliation."}}, {"@type": "Question", "name": "Can an auctioneer's commission stay in the trust account?", "acceptedAnswer": {"@type": "Answer", "text": "Earned commission should move to the operating account promptly and be documented against the settlement that earned it."}}, {"@type": "Question", "name": "What if the month is out of balance and the cause can't be found?", "acceptedAnswer": {"@type": "Answer", "text": "Record it as out of balance with the difference and what was checked, and resolve it next month. Never plug the difference."}}]}]</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <nav>
+      <a href="/#workflow">How it works</a>
+      <a href="/tutorial.html">Tutorial</a>
+      <a href="/#questions">Questions</a>
+      <a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap intro">
+  <span class="section-num">SaleLedger · Guide</span>
+  <h1>How to reconcile an auction trust account every month.</h1>
+  <p class="lede measure">The three balances that have to agree, the exceptions that break them, what your state expects you to keep, and a checklist you can print. Written for auction houses and estate-sale companies that hold consignor money.</p>
+  <nav class="toc" aria-label="On this page">
+    <a href="#why">Why monthly</a><a href="#three">The three-way check</a><a href="#steps">The routine</a><a href="#exceptions">The exceptions</a><a href="#keep">What to keep</a><a href="#checklist">Checklist</a><a href="#faq">Questions</a>
+  </nav>
+</div>
+
+<section class="rule-top guide" id="why">
+  <div class="wrap">
+    <h2>Why this has to happen every month</h2>
+    <p>A trust (escrow) account holds money that is not yours: buyer payments waiting to be settled and consignor proceeds waiting to be paid out. Your commission is the only part that ever belongs to the business. Most state auction boards do not ask you to file anything periodically — they reserve the right to examine the account whenever they choose, and several spell out what the records must look like:</p>
+    <ul>
+      <li><b>Wisconsin</b> (SPS 125.12): reconcile the trust account <i>in writing each month</i> and keep a check register with date, payee, number and amount.</li>
+      <li><b>Texas</b> (16 TAC §67.70(b)): itemized records of gross proceeds, expenses, every purchaser and every selling price, kept at least two years.</li>
+      <li><b>Ohio</b> (ORC 4707.024): detailed records of deposits, withdrawals and interest in the client trust account.</li>
+      <li><b>Illinois</b> (68 Ill. Admin. Code Pt. 1440): a chronological journal of escrow receipts and disbursements with a running balance after each entry.</li>
+    </ul>
+    <p>Whatever your state says, the practical test is the same: on any day, can you show that the money in the bank equals what you owe consignors, and explain every dollar of the difference? Doing that once a month, while the deposits and checks are fresh, is far cheaper than doing it under examination.</p>
+    <div class="callout caution">This guide explains a bookkeeping routine. It is not legal or accounting advice; your state rules and your CPA govern. Check the current text of your board's rule before relying on any citation above.</div>
+  </div>
+</section>
+
+<section class="rule-top guide" id="three">
+  <div class="wrap">
+    <h2>The three-way check</h2>
+    <p>A bank reconciliation proves your checkbook matches the bank. A <i>trust</i> reconciliation has to prove one more thing: that the money in the account is fully explained by what you owe. So three figures are compared, not two.</p>
+    <div class="three">
+      <div><span class="k">1 · Bank adjusted balance</span><div class="v">Statement ending balance + deposits in transit − outstanding checks. What the bank will show once everything clears.</div></div>
+      <div><span class="k">2 · Trust control balance</span><div class="v">Opening balance + every receipt − every disbursement, from your own records for the period. What your books say is in trust.</div></div>
+      <div><span class="k">3 · Consignor subledger total</span><div class="v">The sum of what is still owed to each consignor (and any buyer credits). Who the money belongs to.</div></div>
+    </div>
+    <p class="eq">1 = 2 = 3 &nbsp;→&nbsp; IN BALANCE. &nbsp; Anything else → OUT OF BALANCE, with a reason for every dollar.</p>
+    <p>If 1 ≠ 2, something hit the bank that is not in your records, or vice-versa (a fee, a wire, a deposit you never entered). If 2 ≠ 3, your records are internally inconsistent — a consignor was over- or under-paid, or money is sitting in the account with no owner. Both need a named explanation, not a plug figure.</p>
+  </div>
+</section>
+
+<section class="rule-top guide" id="steps">
+  <div class="wrap">
+    <h2>The monthly routine</h2>
+    <ol>
+      <li><b>Fix the period.</b> First to last day of the month, or the settlement window of one auction if that is how your board thinks. Use the same convention every time.</li>
+      <li><b>Get the opening balance.</b> Last month's <i>reconciled</i> ending bank balance. Not the current balance in online banking — the figure you proved last month.</li>
+      <li><b>Pull three records for the period.</b> (a) The settlement export from your auction software — Auction Flex Consignor Summary, Totals by Consignment Order, or Totals by Item; (b) the QuickBooks / IIF export of consignor payouts with dates and check numbers; (c) the trust account bank statement as CSV, Excel or OFX/QFX. Include <i>every</i> auction that had activity in the period — an auction you leave out shows up as unexplained deposits and checks.</li>
+      <li><b>List receipts.</b> Buyer payments, deposits and any interest, by date and amount. Tie each to an auction.</li>
+      <li><b>List disbursements.</b> Consignor payouts (check number, payee, amount), refunds to buyers, your commission transfer to operating. Tie each consignor payout to the settlement it pays.</li>
+      <li><b>Compute the three balances</b> and compare them.</li>
+      <li><b>Explain every difference by name.</b> Timing items (deposits in transit, outstanding checks) are fine as long as they clear next month. Everything else is an exception — see the list below — and gets a decision: correct the books, recover the money, or move it.</li>
+      <li><b>Write it down.</b> The report with the three figures, the exception list with what you decided, and the check register. Sign and date it. File it with the month's statements.</li>
+      <li><b>Carry forward.</b> This month's reconciled ending balance becomes next month's opening balance.</li>
+    </ol>
+    <div class="callout">Match consignors by the exact name your auction software and your accounting file use. A consignor spelled two ways is the most common reason a payout "disappears" from the reconciliation. Fix the spelling in the source rather than guessing at the match.</div>
+  </div>
+</section>
+
+<section class="rule-top guide" id="exceptions">
+  <div class="wrap">
+    <h2>The exceptions you will actually see</h2>
+    <p>Almost every out-of-balance month comes down to one of these. Each has a name, a usual cause, and a right response.</p>
+    <table class="exc">
+      <thead><tr><th>Exception</th><th>What it looks like</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td><b>Disbursement mismatch</b></td><td>A consignor check cleared for $27,700.00; the settlement says $27,200.00.</td><td>Overpayment — recover it or document the correction. Underpayments are owed immediately.</td></tr>
+        <tr><td><b>Unmatched receipt</b></td><td>A $20,000.00 deposit with no auction or buyer behind it.</td><td>Find the source before it sits in trust. Money with no owner is the first thing an examiner asks about.</td></tr>
+        <tr><td><b>Unmatched disbursement</b></td><td>A $2,950.00 wire to the operating account with no settlement authorising it.</td><td>The classic commingling finding. Return it or document the commission it represents, with the settlement that supports it.</td></tr>
+        <tr><td><b>Unauthorized deduction</b></td><td>A consignor was paid less than the settlement, with no fee or adjustment on record.</td><td>Pay the difference or record the agreed deduction on the settlement.</td></tr>
+        <tr><td><b>Bank fee taken from trust</b></td><td>A $95.00 monthly service charge.</td><td>Reimburse trust from operating, or record it and reduce the fee at the bank. Fees must not come out of consignor money.</td></tr>
+        <tr><td><b>Stale funds</b></td><td>A consignor balance still unpaid months after settlement; an uncashed check.</td><td>Re-issue or escheat per your state's unclaimed-property rules. Do not let it net against other consignors.</td></tr>
+        <tr><td><b>Timing items</b></td><td>Deposits in transit, outstanding checks at month-end.</td><td>Normal — list them. If the same item is still outstanding next month, it stops being a timing item.</td></tr>
+        <tr><td><b>Missing period</b></td><td>An auction's settlements aren't in this month's records.</td><td>Add the settlement export. Its deposits and checks are otherwise "unexplained".</td></tr>
+      </tbody>
+    </table>
+    <p>The rule that keeps you out of trouble: <b>flag, don't guess</b>. A plug entry that makes the numbers agree is worse than an honest exception, because it hides the thing an examiner is looking for.</p>
+  </div>
+</section>
+
+<section class="rule-top guide" id="keep">
+  <div class="wrap">
+    <h2>What to keep, and for how long</h2>
+    <ul>
+      <li><b>The monthly reconciliation report</b> — the three balances, the status, every exception and its resolution, signed and dated.</li>
+      <li><b>The check register</b> — date, payee, check number, amount, for every trust disbursement (the exact list Wisconsin SPS 125.12 asks for).</li>
+      <li><b>The source records</b> — settlement exports, bank statements, deposit slips, the QuickBooks export — so the report can be reproduced from evidence, not memory.</li>
+      <li><b>A history</b> — one report per period, in order, so you can show an examiner every month you reconciled and not just the last one.</li>
+    </ul>
+    <p>Retention: at least two years is the floor in Texas; several states say three or five. Keep the whole set for the longest period any rule that applies to you names, and keep it where a consignor dispute can find it.</p>
+  </div>
+</section>
+
+<section class="rule-top guide" id="checklist">
+  <div class="wrap">
+    <h2>The month-end checklist</h2>
+    <p>Print this page (the header and footer drop out) and tick it off each month.</p>
+    <ul class="checklist">
+      <li>Period fixed; opening balance = last month's reconciled ending balance.</li>
+      <li>Settlement export for every auction with activity this period.</li>
+      <li>QuickBooks / IIF payout export with check numbers and dates.</li>
+      <li>Trust account bank statement for the full period.</li>
+      <li>Receipts listed and tied to an auction.</li>
+      <li>Disbursements listed and tied to a settlement.</li>
+      <li>Bank adjusted balance, trust control balance and consignor subledger total computed.</li>
+      <li>Status recorded: IN BALANCE or OUT OF BALANCE.</li>
+      <li>Every exception named, with a decision and a date.</li>
+      <li>Check register attached.</li>
+      <li>Report signed, dated, filed with the statements.</li>
+      <li>Ending balance carried forward to next month.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="rule-top guide" id="faq">
+  <div class="wrap">
+    <h2>Questions people ask</h2>
+    <h3>Is a bank reconciliation in QuickBooks enough?</h3>
+    <p>It proves your books match the bank (balances 1 and 2). It does not prove that what is in the bank is fully owed to identifiable consignors (balance 3). That third comparison is what makes it a trust reconciliation.</p>
+    <h3>Can my commission stay in the trust account?</h3>
+    <p>Earned commission should move to operating promptly and be documented against the settlement that earned it. Leaving it in trust muddies balance 3; sweeping it out without a settlement to point at is the unmatched-disbursement exception above.</p>
+    <h3>What if the month is out of balance and I can't find why?</h3>
+    <p>Record it as out of balance with the difference and what you checked. An honest open item, resolved next month, is defensible. A plug is not.</p>
+    <h3>How long does this take?</h3>
+    <p>Done by hand across three exports, an afternoon. With the records already in the shape your software exports them, SaleLedger runs the three-way check and writes the exception list in minutes — you make the decisions.</p>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap cta-box">
+    <span class="section-num" style="color:rgba(246,243,235,.7)">Do this in minutes, not an afternoon</span>
+    <h2>SaleLedger runs the three-way check for you.</h2>
+    <p>Bring in the settlement export, the QuickBooks file and the bank statement. It computes the three balances, names every exception in plain English, writes the check register and keeps the history — on your own computer. $129.00/month, first 30 days free, cancel any time.</p>
+    <p><a href="https://license.getsaleledger.com/checkout" class="btn-primary">Start free month ↗</a> &nbsp; <a href="/tutorial.html">Try it on the practice files first</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <a href="/" class="brandmark">
+      <span class="icon-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 3h11l3 3v15H5z"/><path d="M9 9h7M9 13h7M9 17h4"/></svg>
+      </span>
+      <span class="text-stack">
+        <span class="name">SaleLedger</span>
+        <span class="by">by ProfitPin</span>
+      </span>
+    </a>
+    <span class="tagline">Practice files are fictional. Questions: <a href="mailto:support@getsaleledger.com">support@getsaleledger.com</a></span>
+    <div class="legal-links"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refunds.html">Refunds &amp; cancellation</a> · <a href="licenses.html">Third-party notices</a></div>
+    <p class="legal-note">Auction Flex, HiBid, and QuickBooks are trademarks of their respective owners. SaleLedger is independent software and is not affiliated with, endorsed by, or certified by them or by any state licensing board. SaleLedger checks records; it does not provide accounting or legal advice and does not file anything on your behalf.</p>
+  </div>
+</footer>
+<script src="/lead-source.js" defer></script>
+</body>
+</html>
