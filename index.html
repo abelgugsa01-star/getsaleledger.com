@@ -130,6 +130,8 @@
   }
 
   nav { display: flex; align-items: center; gap: 30px; }
+  nav[aria-label="Start with your task"] { display: block; }
+  nav[aria-label="Start with your task"] a { display: inline; white-space: normal; }
 
   nav a {
     font-family: 'IBM Plex Mono', monospace;
@@ -609,7 +611,7 @@
     .coverage-item:nth-child(odd) { border-right: none; padding-right: 0; }
     .coverage-item:nth-child(even) { padding-left: 0; }
     nav { gap: 16px; }
-    nav a:not(.btn-primary) { display: none; }
+    header nav a:not(.btn-primary) { display: none; }
     .pricing-panel { flex-direction: column; }
   }
 
@@ -670,7 +672,7 @@
         <a href="#start" class="btn-primary">Start free month ↗</a>
         <a href="#workflow" class="btn-secondary">See how it works ↓</a>
       </div>
-      <p class="qualifier">For auction houses and auctioneers. Built to keep consignor and bank data on your own computer.</p>
+      <p class="qualifier">For auction houses and auctioneers. Built to keep consignor and bank data on your own computer.</p><nav aria-label="Start with your task"><p><a href="trust-account-check.html">Try the three-way trust check</a> · <a href="auction-flex-quickbooks-bank-exports.html">Prepare your reconciliation files</a></p></nav>
     </div>
 
     <div class="example-panel example-panel-hero">
