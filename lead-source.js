@@ -44,7 +44,7 @@
     try {
       var url = new URL(a.getAttribute('href'), location.href);
       if (!/^https?:$/.test(url.protocol) || ![site, 'www.' + site, 'app.' + site, 'license.' + site].includes(url.hostname)) return;
-      if (!/^\/(checkout|signup|start)(\.html)?\/?$/.test(url.pathname)) return;
+      if (!/^\/(checkout|trial|signup|start)(\.html)?\/?$/.test(url.pathname)) return;
       if (url.searchParams.has('utm_source') || url.searchParams.has('utm_campaign') || url.searchParams.has('ref')) return;
       KEYS.forEach(function (key) { if (typeof lead[key] === 'string') url.searchParams.set(key, lead[key].slice(0, 120)); });
       a.setAttribute('href', url.href);
